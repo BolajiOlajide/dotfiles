@@ -8,6 +8,9 @@ tap "homebrew/cask"
 brew 'bash'
 brew 'git'
 brew 'go'
+brew 'mas'
+brew 'mongodb'
+brew 'mysql'
 brew 'node'
 brew 'openssl'
 brew 'postgresql'
@@ -22,15 +25,23 @@ brew 'zsh-completions'
 cask 'atom'
 cask 'docker'
 cask 'firefox'
+cask 'flycut'
+cask 'dash'
+cask 'dashlane'
 cask 'google-chrome'
 cask 'iterm2'
 cask 'java'
+cask 'kap'
 cask 'mute-me' # microphone toggle for touch bar
 cask 'postico' # pgadmin alternative
 cask 'postman' # rest api ui
+cask 'sketch'
+cask 'skype'
 cask 'slack'
-cask 'steermouse' # Better than usb overdrive
 cask 'spotify'
+cask 'steermouse' # Better than usb overdrive
+cask 'tableplus'
+cask 'there'
 cask 'vagrant'
 cask 'virtualbox'
 cask 'visual-studio-code'
@@ -39,3 +50,4 @@ cask 'zoomus' # video conferencing
 
 # App Store Apps
 mas 'Xcode', id: 497799835
+mas 'Bear' id: 1091189122
