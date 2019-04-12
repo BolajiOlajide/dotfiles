@@ -1,113 +1,41 @@
 # Taps
-tap "getantibody/tap"
-tap "homebrew/bundle"
-tap "homebrew/cask"
+tap "heroku/brew"
 tap "homebrew/core"
-tap "wata727/tflint"
+tap "homebrew/services"
+tap "homebrew/cask"
 
 # Brews
-brew 'automake'
-brew 'autoconf'
-brew 'asdf'
-brew 'antigen'
-brew 'awscli'
 brew 'bash'
-brew 'bash-completion2'
-brew 'coreutils'
-brew 'csvtool'
-brew 'findutils', args: ["with-default-names"]
-brew "getantibody/tap/antibody"
 brew 'git'
-brew 'git-lfs'
-brew 'gnupg'
-brew 'gnupg2'
-brew 'gnu-tar', args: ["with-default-names"]
-brew 'gnu-sed', args: ["with-default-names"]
 brew 'go'
-brew 'grep', args: ["with-default-names"]
-brew 'imagemagick'
-brew 'jq' # JSON for bash
-brew 'kubectl'
-brew 'kubectx'
-brew 'kubernetes-helm'
-brew 'lastpass-cli'
-brew 'less'
-brew 'libtool'
-brew 'libxslt'
-brew 'libyaml'
-brew 'mas'
-brew 'mkvtoolnix' # MKV file manipulation
 brew 'node'
 brew 'openssl'
-brew 'pinentry' # Optional dep for lastpass
 brew 'postgresql'
-brew 'pv' # Copy progress tool
 brew 'python'
 brew 'python3'
-brew 'rbenv'
-brew 'readline'
-brew 'ruby'
-brew 'salt'
-brew 'screen'
-brew 'stress'
-brew 'terraform'
-brew 'tflint'
-brew 'thefuck'
-brew 'trash'
 brew 'tree'
-brew 'unixodbc'
-brew 'unzip'
-brew 'vim'
-brew 'watch'
-brew 'wget'
 brew 'yarn'
 brew 'zsh'
 brew 'zsh-completions'
 
 # Casks
-cask 'alfred'
-cask 'android-file-transfer'
 cask 'atom'
-cask 'aws-vault'
-cask 'deathtodsstore' # TODO: launch automatically in mac init
-cask 'discord'
 cask 'docker'
-cask 'dropbox'
 cask 'firefox'
-cask 'gimp'
 cask 'google-chrome'
-cask 'google-cloud-sdk'
-cask 'handylock'
 cask 'iterm2'
 cask 'java'
-cask 'jetbrains-toolbox'
-cask 'magicprefs' # Magic mouse fix
-cask 'meld'
-cask 'minikube'
 cask 'mute-me' # microphone toggle for touch bar
-cask 'muzzle' # auto-enable do not disturb on screenshares
-cask 'notion'
-cask 'pgadmin4'
 cask 'postico' # pgadmin alternative
 cask 'postman' # rest api ui
-cask 'pritunl' # openvpn altrernative client
-cask 'private-internet-access'
 cask 'slack'
 cask 'steermouse' # Better than usb overdrive
 cask 'spotify'
-cask 'steam'
 cask 'vagrant'
 cask 'virtualbox'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'zoomus' # video conferencing
 
-# Needs java first
-brew 'maven'
-
 # App Store Apps
-mas 'HyperDock', id: 449830122
-mas 'LastPass', id: 926036361
-mas 'Microsoft Remote Desktop', id: 1295203466
-mas 'PiPifier', id: 1160374471 # Add pip button to safari
 mas 'Xcode', id: 497799835
