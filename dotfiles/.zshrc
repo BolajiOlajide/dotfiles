@@ -1,58 +1,50 @@
-#@IgnoreInspection BashAddShebang
-
-################
-# Path Changes #
-################
-
-# Setup Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Use Gnuutils commands by default
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-#######################
-# Environment Changes #
-#######################
-export AWS_DEFAULT_PROFILE="default"
-
-###############
-# iTerm setup #
-###############
-
-# load iterm integration
-source ~/.iterm2_shell_integration.zsh
-
-#############
-# oh-my-zsh #
-#############
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/lstuart/.antigen/bundles/robbyrussell/oh-my-zsh/"
+export ZSH="/Users/bolajiolajide/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-POWERLEVEL9K_MODE='nerdfont-complete'
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="robbyrussell"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -60,10 +52,17 @@ DISABLE_AUTO_TITLE="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.zsh_customizations
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -71,140 +70,56 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
 
-# This speeds up pasting w/ autosuggest
-# https://github.com/zsh-users/zsh-autosuggestions/issues/238
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
+source ~/.bash_aliases
+source /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH=$PATH:$HOME/flutter/bin
 
-#######################
-# Powerlevel9k Config #
-#######################
+echo 'Terminal is supercharged!'
 
-# Basic Config
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/bolajiolajide/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/bolajiolajide/google-cloud-sdk/path.zsh.inc'; fi
 
-# Context Config
-DEFAULT_USER=$USER
-POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-POWERLEVEL9K_CONTEXT_TEMPLATE=%n
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/bolajiolajide/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/bolajiolajide/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Dir Config
-# POWERLEVEL9K_SHORTEN_STRATEGY=truncate_with_folder_marker
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-# POWERLEVEL9K_SHORTEN_FOLDER_MARKER=(.git|.hg|.terraform)
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Custom functions
-zsh_aws() {
-  if [ "$AWS_DEFAULT_PROFILE" != "default" ]; then
-    local color='%F{208}'
-    echo -n "\ue7ad ${AWS_DEFAULT_PROFILE}"
-  fi
-}
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
 
-zsh_kubernetes() {
-  if [[ ${KUBERNETES_DISPLAY} ]]; then
-    context=$(kubectl config current-context)
-    local color='%F{68}'
-    echo -n "\ufd31 ${context}"
-  fi
-}
+# access adb from terminal
+export PATH=$PATH:~/Library/Android/sdk/platform-tools/
 
-zsh_terraform() {
-  # break if there is no .terraform directory
-  if [[ -d .terraform ]]; then
-    local tf_workspace=$(/usr/local/bin/terraform workspace show)
-    local tf_region=$(readlink backend.tf | awk -F. '{print $3}')
-    local color='%F{99}'
-    echo -n "\ufbdf $tf_workspace:$tf_region"
-  fi
-}
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# AWS Segment
-POWERLEVEL9K_CUSTOM_AWS="zsh_aws"
-POWERLEVEL9K_CUSTOM_AWS_BACKGROUND=202
-POWERLEVEL9K_CUSTOM_AWS_FOREGROUND=015
-
-# AWS Segment
-POWERLEVEL9K_CUSTOM_KUBERNETES="zsh_kubernetes"
-POWERLEVEL9K_CUSTOM_KUBERNETES_BACKGROUND=099
-POWERLEVEL9K_CUSTOM_KUBERNETES_FOREGROUND=015
-
-# Terraform Segment
-POWERLEVEL9K_CUSTOM_TERRAFORM="zsh_terraform"
-POWERLEVEL9K_CUSTOM_TERRAFORM_BACKGROUND=057
-POWERLEVEL9K_CUSTOM_TERRAFORM_FOREGROUND=015
-
-# Virtualenv Segment
-POWERLEVEL9K_VIRTUALENV_BACKGROUND=green
-POWERLEVEL9K_PYTHON_ICON="\uf81f"
-
-# VCS Segment
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
-
-# Segments Config
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir custom_aws custom_kubernetes custom_terraform virtualenv rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-
-###########################
-# Antigen Package Manager #
-###########################
-
-# Import antigen
-source /usr/local/share/antigen/antigen.zsh
-
-# Goto .antigenrc for antigen config
-source ~/.antigenrc
-
-############################
-# Antibody Package Manager #
-############################
-
-# Import antibody
-# source <(antibody init)
-# antibody bundle < ~/.antibodyrc
-
-
-########################
-# asdf version manager #
-########################
-
-source /usr/local/opt/asdf/asdf.sh
-
-####################
-# History Settings #
-####################
-
-# If a new command line being added to the history list duplicates an older one, 
-# the older command is removed from the list (even if it is not the previous event).
-setopt HIST_IGNORE_ALL_DUPS
-
-# Remove the history (fc -l) command from the history list when invoked. 
-# Note that the command lingers in the internal history until the next command is 
-# entered before it vanishes, allowing you to briefly reuse or edit the line.
-setopt HIST_NO_STORE
-
-# When searching for history entries in the line editor, do not display duplicates
-# of a line previously found, even if the duplicates are not contiguous.
-setopt HIST_FIND_NO_DUPS
-
-# When writing out the history file, older commands that duplicate newer ones are omitted.
-setopt HIST_SAVE_NO_DUPS
-
-# Save each command’s beginning timestamp (in seconds since the epoch) and the
-# duration (in seconds) to the history file. The format of this prefixed data is:
-# ‘: <beginning time>:<elapsed seconds>;<command>’.
-setopt EXTENDED_HISTORY
+export GOPATH=$HOME/go
+export NODE_ENV="development"
+export ANDROID_HOME=$HOME/Library/Android/sdk
