@@ -1,8 +1,6 @@
 # Directory Aliases
 alias dev="cd ~/Dev"
-alias bcast="cd ~/Dev/brandcast"
 alias lendme="cd ~/Dev/lendme"
-alias psar="cd /opt/assessment-reporting"
 alias ps="cd ~/Dev/pluralsight"
 
 # Python related aliases
@@ -34,16 +32,17 @@ alias gst="git status"
 alias rnra="react-native run-android"
 alias rnri="react-native run-ios"
 alias link="react-native link"
-alias magic="watchman watch-del-all && rm -rf node_modules && npm i && react-native link && npm start -- --reset-cache"
+alias rnmagic="watchman watch-del-all && rm -rf node_modules && npm i && react-native link && npm start -- --reset-cache"
 
 # Node aliases
-alias start="yarn start"
-alias test="yarn test"
-alias build="yarn build"
+alias ystart="yarn start"
+alias ytest="yarn test"
+alias ybuild="yarn build"
 alias npmplease="rm -rf node_modules/ && rm -f package-lock.json && npm install"
 
 # heroku aliases
 alias HEROKU="git push heroku master"
+alias HEROKU+="git push -f heroku master"
 
 # Shell aliases
 alias del="rm -rf"

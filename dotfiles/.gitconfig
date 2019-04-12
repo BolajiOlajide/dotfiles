@@ -1,13 +1,13 @@
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [user]
-    name = Logan Stuart
-    email = fishpen0@users.noreply.github.com
+    name = Bolaji Olajide
+    email = BolajiOlajide@users.noreply.github.com
 [core]
     excludesfile = ~/.gitignore
 [credential]
     helper = cache
-    username = fishpen0
+    username = BolajiOlajide
 [alias]
     branches = --no-pager branch -a
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -15,9 +15,7 @@
 
 # Safety mechanism for commit identities
 # Add a .gitconfig file to below directories with alternate [user] information
-[includeIf "gitdir:~/dev/ps/"]
-    path = ~/dev/ps/.gitconfig
 [includeIf "gitdir:~/dev/personal/"]
-    path = ~/dev/personal/.gitconfig
-[includeIf "gitdir:~/dev/public/"]
-    path = ~/dev/public/.gitconfig
+    path = ~/Dev/.gitconfig
+# [includeIf "gitdir:~/dev/public/"]
+#     path = ~/dev/public/.gitconfig
