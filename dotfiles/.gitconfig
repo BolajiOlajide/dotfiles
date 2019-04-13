@@ -1,5 +1,7 @@
 [url "git@github.com:"]
     insteadOf = https://github.com/
+[color]
+  ui = true
 [user]
     name = Bolaji Olajide
     email = bolaji.olajide@andela.com
@@ -12,10 +14,12 @@
     branches = --no-pager branch -a
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     s = status -s
+    glog = log --graph --full-history --all --color --date=short --pretty=format:'%C(11)%h%x09%C(82)%d%C(81) [%ad %an] %C(reset)%s'
+    hist = log --graph --decorate --oneline --all
 
 # Safety mechanism for commit identities
 # Add a .gitconfig file to below directories with alternate [user] information
-[includeIf "gitdir:~/dev/personal/"]
-    path = ~/Dev/.gitconfig
+# [includeIf "gitdir:~/dev/personal/"]
+#     path = ~/Dev/.gitconfig
 # [includeIf "gitdir:~/dev/public/"]
 #     path = ~/dev/public/.gitconfig
