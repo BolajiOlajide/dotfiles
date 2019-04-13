@@ -28,7 +28,7 @@ if [[ $? == 0 ]] ; then
     echo "Skipping Brew installation.  Already Installed"
 else
     echo "Installing Brew"
-    # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Disable Tracking
@@ -56,7 +56,7 @@ brew cleanup
 # cp .iterm2_* ~/
 
 # Install Iterm Tab Setter
-npm install -g iterm2-tab-set
+# npm install -g iterm2-tab-set
 
 ##########
 # Mac OS #
@@ -84,7 +84,7 @@ chsh -s /usr/local/bin/zsh;
 
 # Install powerline fonts
 echo "Installing powerline fonts"
-unzip fonts/Inconsolata.zip -d /Library/Fonts
+unzip fonts/FiraCode_1.205.zip -d /Library/Fonts
 
 # Install oh-my-zsh
 echo "Installing oh-my-zsh"
@@ -95,13 +95,6 @@ curl -sL https://iterm2.com/shell_integration/bash -o ~/.iterm2_shell_integratio
 
 echo "Downloading latest iterm integration files for zsh"
 curl -sL https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
-
-###########
-# crontab #
-###########
-
-echo "Installing crontab"
-crontab ~/.cron
 
 ################
 # Applications #
