@@ -1,5 +1,2 @@
-Alfred config
-test steermouse
-undo all antigen/antibody stuff
-flip brewfile to a shell script
 clone personal git repos
+install node dependencies

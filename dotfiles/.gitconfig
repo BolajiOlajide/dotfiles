@@ -2,7 +2,7 @@
     insteadOf = https://github.com/
 [user]
     name = Bolaji Olajide
-    email = BolajiOlajide@users.noreply.github.com
+    email = bolaji.olajide@andela.com
 [core]
     excludesfile = ~/.gitignore
 [credential]
