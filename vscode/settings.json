@@ -1,28 +1,18 @@
 {
-    "workbench.colorTheme": "folabelle",
-    "python.formatting.provider": "none",
+    "workbench.colorTheme": "Night Owl",
     "editor.lineHeight": 25,
     "editor.letterSpacing": 0.5,
     "files.trimTrailingWhitespace": true,
     "editor.renderWhitespace": "all",
     "workbench.iconTheme": "material-icon-theme",
     "editor.fontSize": 14,
-    "workbench.sideBar.location": "right",
+    "workbench.sideBar.location": "left",
     "editor.fontLigatures": true,
     "workbench.startupEditor": "none",
     "workbench.editor.swipeToNavigate": true,
     "gitlens.keymap": "alternate",
-    "editor.fontFamily": "Operator Mono",
-    "window.zoomLevel": 0.2,
+    "window.zoomLevel": 0.5,
     "terminal.external.osxExec": "iTerm.app",
     "editor.renderIndentGuides": true,
-    "emmet.triggerExpansionOnTab": true,
-    "rust.rustup": {
-        "toolchain": "stable-x86_64-apple-darwin"
-    },
-    "rust.mode": "legacy",
-    "python.linting.pylintEnabled": false,
-    "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true,
-    "liveshare.featureSet": "insiders"
+    "editor.fontFamily": "Operator Mono"
 }
