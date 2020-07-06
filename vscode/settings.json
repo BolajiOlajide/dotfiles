@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Night Owl",
+    "workbench.colorTheme": "Min Dark",
     "editor.lineHeight": 25,
     "editor.letterSpacing": 0.5,
     "files.trimTrailingWhitespace": true,
@@ -11,8 +11,13 @@
     "workbench.startupEditor": "none",
     "workbench.editor.swipeToNavigate": true,
     "gitlens.keymap": "alternate",
-    "window.zoomLevel": 0.5,
+    "window.zoomLevel": 1,
     "terminal.external.osxExec": "iTerm.app",
     "editor.renderIndentGuides": true,
-    "editor.fontFamily": "Operator Mono"
+    "editor.fontFamily": "Operator Mono",
+    "go.formatTool": "gofmt",
+    "go.lintOnSave": "file",
+    "go.lintTool": "golint",
+    "go.lintFlags": [],
+    "go.autocompleteUnimportedPackages": true
 }
