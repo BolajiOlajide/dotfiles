@@ -1,2 +1,0 @@
-clone personal git repos
-install node dependencies

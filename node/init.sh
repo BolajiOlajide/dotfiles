@@ -6,4 +6,4 @@ echo "Setting up Node"
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Install dependencies
-yarn add create-react-app n
+yarn global add n

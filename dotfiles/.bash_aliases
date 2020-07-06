@@ -1,7 +1,9 @@
 # Directory Aliases
-alias dev="cd ~/Dev"
-alias lendme="cd ~/Dev/lendme"
-alias ps="cd ~/Dev/pluralsight"
+alias dev="cd ~/workspace"
+alias lendme="cd ~/workspace/lendme"
+alias ps="cd ~/workspace/pluralsight"
+alias red="cd ~/workspace/redsquirrel"
+alias annie="cd ~/workspace/annie"
 
 # Python related aliases
 alias runserve="python manage.py runserver"
@@ -52,3 +54,6 @@ alias c5000="lsof -i:5000"
 
 # Bash aliases
 alias rem="rm -rf"
+
+alias dc="docker-compose"
+alias dcd="docker-compose down"
