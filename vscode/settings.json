@@ -19,5 +19,24 @@
     "go.lintOnSave": "file",
     "go.lintTool": "golint",
     "go.lintFlags": [],
-    "go.autocompleteUnimportedPackages": true
+    "go.autocompleteUnimportedPackages": true,
+    "explorer.compactFolders": false,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.docsTool": "godoc",
+    "editor.insertSpaces": true,
+    "[go]": {
+        "editor.snippetSuggestions": "top",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+    },
+    "[html]": {
+        "editor.tabSize": 4
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    }
 }
