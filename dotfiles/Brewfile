@@ -50,5 +50,6 @@ cask 'vlc'
 cask 'zoomus' # video conferencing
 
 # App Store Apps
-mas 'Xcode', id: 497799835
-mas 'Bear' id: 1091189122
+mas "GarageBand", id: 682658836
+mas "Trello", id: 1278508951
+mas "Xcode", id: 497799835

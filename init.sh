@@ -35,7 +35,7 @@ fi
 brew analytics off
 
 # Setup cask for applications
-brew tap caskroom/cask
+brew tap homebrew/cask-cask
 
 # Setup mas for app store support
 brew install mas
