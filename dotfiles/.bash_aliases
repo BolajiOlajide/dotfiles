@@ -6,6 +6,7 @@ alias red="cd ~/workspace/redsquirrel"
 alias annie="cd ~/workspace/annie"
 
 # Python related aliases
+alias manage="python manage.py"
 alias runserve="python manage.py runserver"
 alias shell="python manage.py shell"
 alias wo="workon"
@@ -55,5 +56,7 @@ alias c5000="lsof -i:5000"
 # Bash aliases
 alias rem="rm -rf"
 
+# docker aliases
 alias dc="docker-compose"
 alias dcd="docker-compose down"
+alias dcu="docker-compose up -d"
