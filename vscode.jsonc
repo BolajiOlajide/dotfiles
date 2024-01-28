@@ -1,0 +1,40 @@
+{
+    "workbench.colorTheme": "Tokyo Night Storm",
+    // "editor.fontFamily": "'JetBrains Mono'",
+    "editor.fontFamily": "'Operator Mono'",
+    "editor.fontSize": 14,
+    "workbench.iconTheme": "ayu",
+    "window.nativeTabs": true,
+    "workbench.startupEditor": "none",
+    "workbench.productIconTheme": "icons-carbon",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "redhat.telemetry.enabled": false,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "svelte.enable-ts-plugin": true,
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "go.alternateTools": {
+        "go": "/usr/local/go/bin/go"
+    },
+    "workbench.sideBar.location": "right"
+}

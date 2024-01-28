@@ -50,9 +50,10 @@ alias gpr="git pull --rebase origin"
 alias annie="ssh bolaji@$ANNIE_DROPLET_IP_ADDRESS"
 alias dyon="ssh bolaji@$DYON_DROPLET_IP_ADDRESS"
 alias cat="bat"
-alias ping="~/prettyping --nolegend"
+alias ping="prettyping --nolegend"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias got="go test ./..."
+alias ppm="pnpm"
 
 ##########
 # HISTORY
@@ -71,3 +72,7 @@ esac
 
 ## Postgres Stuff
 export PATH="$PATH:/usr/local/opt/libpq/bin" # https://www.cyberithub.com/how-to-install-pg_dump-and-pg_restore-on-macos-using-7-easy-steps/
+
+## NVM Stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
