@@ -1,5 +1,23 @@
-# source private exports that includes
-source ~/.private
+##############
+# BASIC SETUP
+##############
+
+typeset -U PATH
+autoload colors; colors;
+
+setopt pushdsilent              # setopt needed to silence pushd/popd messages
+setopt extended_glob            # enable zsh style globbing
+setopt no_nomatch               # proceed with cmd even if glob does not match
+
+#############
+## PRIVATE ##
+#############
+# Include private stuff that's not supposed to show up
+# in the dotfiles repo
+local private="${HOME}/.zsh.d/private.sh"
+if [ -e ${private} ]; then
+  . ${private}
+fi
 
 # ===========================================================
 # =              EXPORTS                                    =
@@ -29,3 +47,12 @@ alias dyon="ssh bolaji@$DYON_DROPLET_IP_ADDRESS"
 alias cat="bat"
 alias ping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias got="go test ./..."
+
+##########
+# HISTORY
+##########
+
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
