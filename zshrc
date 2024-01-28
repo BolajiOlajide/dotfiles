@@ -14,7 +14,7 @@ setopt no_nomatch               # proceed with cmd even if glob does not match
 #############
 # Include private stuff that's not supposed to show up
 # in the dotfiles repo
-local private="${HOME}/.zsh.d/private.sh"
+local private="${HOME}/.private.sh"
 if [ -e ${private} ]; then
   . ${private}
 fi
@@ -27,12 +27,17 @@ fi
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH=$GOBIN:$PATH
+export GO111MODULE=on
 
 # ANDROID / JAVA
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# FZF
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 # ===========================================================
 # =              ALIASES                                    =
@@ -56,3 +61,13 @@ alias got="go test ./..."
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
+
+# PNPM THINGS
+export PNPM_HOME="${HOME}/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+## Postgres Stuff
+export PATH="$PATH:/usr/local/opt/libpq/bin" # https://www.cyberithub.com/how-to-install-pg_dump-and-pg_restore-on-macos-using-7-easy-steps/

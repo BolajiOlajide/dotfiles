@@ -31,5 +31,5 @@ The brew file is generated using the command `brew bundle -f dump`.
 You can install other essential via Homebrew:
 
 ```
-brew install --cask slack zoom vlc spotify visual-studio-code cleanshot postico2 discord figma iterm2
+brew install --cask slack zoom vlc spotify visual-studio-code cleanshot postico2 discord figma iterm2 pnpm
 ```
