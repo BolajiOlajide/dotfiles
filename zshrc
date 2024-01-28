@@ -54,6 +54,13 @@ alias ping="prettyping --nolegend"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias got="go test ./..."
 alias ppm="pnpm"
+alias gst="git status"
+alias ga="git add"
+alias check="git checkout"
+alias gd="git diff"
+alias gc="git commit"
+# Nuke node modules
+alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; elif [ -f pnpm-lock.yaml ]; then pnpm install; else npm install; fi;'
 
 ##########
 # HISTORY
@@ -75,4 +82,4 @@ export PATH="$PATH:/usr/local/opt/libpq/bin" # https://www.cyberithub.com/how-to
 
 ## NVM Stuff
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

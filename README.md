@@ -11,7 +11,7 @@ Inspired by [@mrnugget's Dotfiles](https://github.com/mrnugget/dotfiles) - this 
 To set up all of the files as symlinks in your home directory, just run this:
 
 ```
-make all
+./bootstrap.sh && make all
 ```
 
 ## Installing apps / tools via Homebrew

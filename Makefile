@@ -4,9 +4,10 @@ DOTFILE_PATH := $(shell pwd)
 $(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
-git: $(HOME)/.gitconfig $(HOME)/.githelpers $(HOME)/.gitignore
+git: $(HOME)/.gitconfig $(HOME)/.gitignore
 psql: $(HOME)/.psqlrc
-zsh: $(HOME)/.zshrc $(HOME)/.zsh.d
-private: $(HOME)/.private_exports
+zsh: $(HOME)/.zshrc
 
-all: psql
+priv: $(HOME)/.private.sh
+
+all: priv git psql zsh
