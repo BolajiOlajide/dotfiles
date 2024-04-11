@@ -29,3 +29,9 @@
 	ui = true
 [push]
     autoSetupRemote = true
+[column]
+    ui = auto
+[branch]
+    sort = committerdate-topdown
+[alias]
+    staash = stash --all
