@@ -10,7 +10,6 @@
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	pager = delta
     excludesfile = ~/.gitignore
 [commit]
     gpgsign = true
@@ -32,6 +31,8 @@
 [column]
     ui = auto
 [branch]
-    sort = committerdate-topdown
+    sort = -committerdate
 [alias]
     staash = stash --all
+    blaame = blame -w -C -C -C
+    push = push --force-with-lease
