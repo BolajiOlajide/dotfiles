@@ -1,9 +1,7 @@
 {
-    "workbench.colorTheme": "Tokyo Night Storm",
-    // "editor.fontFamily": "'JetBrains Mono'",
-    "editor.fontFamily": "'Operator Mono'",
-    "editor.fontSize": 14,
-    "workbench.iconTheme": "ayu",
+    "workbench.colorTheme": "Vesper",
+    "editor.fontFamily": "'Operator Mono','SF Mono','JetBrains Mono'",
+    "workbench.iconTheme": "chalice-icon-theme",
     "window.nativeTabs": true,
     "workbench.startupEditor": "none",
     "workbench.productIconTheme": "icons-carbon",
@@ -33,8 +31,63 @@
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "go.alternateTools": {
-        "go": "/usr/local/go/bin/go"
+    "terminal.integrated.fontFamily": "monospace",
+    "editor.fontSize": 13,
+    "editor.accessibilitySupport": "off",
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
     },
-    "workbench.sideBar.location": "right"
+    "window.title": "${dirty}proton${separator}${activeEditorShort}",
+    "editor.cursorBlinking": "smooth", // smol cursor animation, looks nice
+    "editor.cursorSmoothCaretAnimation": "on", // move cursor smoothly
+    "workbench.layoutControl.enabled": false, // hides those little squares on the top right of the window
+    "workbench.editor.editorActionsLocation": "hidden", // hides the "format" and ellipsis buttons on the top right of the window
+    // "editor.minimap.renderCharacters": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": true,
+    "workbench.colorCustomizations": {
+        "editorGutter.addedBackground": "#A0A0A0",
+        "editorGutter.deletedBackground": "#A0A0A0",
+        "editorGutter.modifiedBackground": "#A0A0A0"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          // remove peppermint flavor
+          {
+            "name": "String, Symbols, Inherited Class",
+            "scope": [
+              "string",
+              "constant.other.symbol",
+              "constant.other.key",
+              "meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js"
+            ],
+            "settings": {
+              "foreground": "#A0A0A0"
+            }
+          },
+          {
+            "name": "CSS ID's",
+            "scope": [
+              "source.sass keyword.control",
+              "meta.attribute-selector.scss"
+            ],
+            "settings": {
+              "foreground": "#ffffff"
+            }
+          },
+          {
+            "name": "Inserted",
+            "scope": ["markup.inserted"],
+            "settings": {
+              "foreground": "#ffffff"
+            }
+          }
+        ]
+      },
+    "window.commandCenter": false
 }

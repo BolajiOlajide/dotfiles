@@ -2,7 +2,7 @@
 	name = Bolaji Olajide
 	email = 25608335+BolajiOlajide@users.noreply.github.com
 	username = BolajiOlajide
-    signingKey = /Users/bolajio/.ssh/id_ed25519.pub
+    signingKey = /Users/bolaji/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = main
 [gpg]
@@ -36,3 +36,5 @@
     staash = stash --all
     blaame = blame -w -C -C -C
     push = push --force-with-lease
+[maintenance]
+	repo = /Users/bolaji/Developer/annie/api
