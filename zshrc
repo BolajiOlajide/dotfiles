@@ -33,7 +33,9 @@ export PATH=$GOBIN:$PATH
 export GO111MODULE=on
 
 # ANDROID / JAVA
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
+export PATH="/usr/local/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -62,6 +64,7 @@ alias ga="git add"
 alias check="git checkout"
 alias gd="git diff"
 alias gc="git commit"
+alias gren="git branch -M"
 # Nuke node modules
 alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; elif [ -f pnpm-lock.yaml ]; then pnpm install; else npm install; fi;'
 
@@ -87,3 +90,7 @@ export PATH="$PATH:/usr/local/opt/libpq/bin" # https://www.cyberithub.com/how-to
 export NVM_DIR="$HOME/.nvm"
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 export HOMEBREW_NO_ANALYTICS=1
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+export PATH=$PATH:/Users/bolaji/.spicetify
