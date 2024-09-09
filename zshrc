@@ -94,3 +94,20 @@ export HOMEBREW_NO_ANALYTICS=1
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 export PATH=$PATH:/Users/bolaji/.spicetify
+
+eval "$(direnv hook zsh)"
+
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
+
+# export ZSH_THEME="robbyrussell"
+export ZSH_THEME="smt"
+
+plugins=(git direnv)
+
+source $ZSH/oh-my-zsh.sh
+
+# -------------------------------------------------------------------
+# make some commands (potentially) less destructive
+# -------------------------------------------------------------------
+alias 'rm=rm -i'
