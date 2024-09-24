@@ -10,4 +10,8 @@ zsh: $(HOME)/.zshrc
 
 priv: $(HOME)/.private.sh
 
-all: priv git psql zsh
+# Define the bootstrap target to run the bootstrap.sh script
+bootstrap:
+	@./bootstrap.sh
+
+all: bootstrap priv git psql zsh
