@@ -1,7 +1,7 @@
 #!/bin/bash
 
 log() {
-    echo "[$(date +"%Y-%m-%d %H:%M:%S"):  💩💩💩💩💩💩💩💩] $1"
+    echo "🚨🚨🚨🚨 ---> $1"
 }
 
 # Function to check if a command exists
@@ -12,6 +12,8 @@ command_exists() {
 if [ ! -e "private.sh" ]; then
     log "private.sh not found. Exiting...."
     exit 1
+else 
+    log "private.sh found. Proceeding..."
 fi
 
 # Check if Homebrew is installed
