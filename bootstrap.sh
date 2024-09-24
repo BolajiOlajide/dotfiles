@@ -23,6 +23,10 @@ else
     log "Homebrew is not installed. Installing Homebrew..."
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # add homebrew to PATH
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/bolajiolajide/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     
     # Check if installation was successful
     if command_exists brew; then
