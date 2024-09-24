@@ -9,6 +9,11 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+if [ ! -e "private.sh" ]; then
+    log "private.sh not found. Exiting...."
+    exit 1
+fi
+
 # Check if Homebrew is installed
 if command_exists brew; then
     log "Homebrew is already installed."
@@ -41,11 +46,6 @@ else
         log "Failed to install Oh My Zsh."
         exit 1
     fi
-fi
-
-if [ ! -e "private.sh" ]; then
-    log "private.sh not found. Exiting...."
-    exit 1
 fi
 
 log "Bootstrap: All done!"
