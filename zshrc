@@ -82,26 +82,14 @@ esac
 
 ## Postgres Stuff
 export PATH="$PATH:/usr/local/opt/libpq/bin" # https://www.cyberithub.com/how-to-install-pg_dump-and-pg_restore-on-macos-using-7-easy-steps/
-
-## NVM Stuff
-export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 export HOMEBREW_NO_ANALYTICS=1
-
-. /usr/local/opt/asdf/libexec/asdf.sh
-
-export PATH=$PATH:/Users/bolaji/.spicetify
-
-eval "$(direnv hook zsh)"
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
-
 # export ZSH_THEME="robbyrussell"
 export ZSH_THEME="eastwood"
 
 plugins=(git direnv)
-
 source $ZSH/oh-my-zsh.sh
 
 # -------------------------------------------------------------------
