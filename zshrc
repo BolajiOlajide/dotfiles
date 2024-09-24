@@ -16,7 +16,7 @@ setopt no_nomatch               # proceed with cmd even if glob does not match
 # in the dotfiles repo
 local private="${HOME}/.private.sh"
 if [ -e ${private} ]; then
-  . ${private}
+  source ${private}
 fi
 
 # ===========================================================
