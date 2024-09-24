@@ -25,7 +25,7 @@ else
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # add homebrew to PATH
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/bolajiolajide/.zprofile
+    (echo; echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"") >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
     
     # Check if installation was successful
