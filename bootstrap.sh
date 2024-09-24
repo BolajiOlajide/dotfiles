@@ -54,4 +54,7 @@ else
     fi
 fi
 
+# delete existing .zshrc so that linking works
+rm -rf ~/.zshrc
+
 log "Bootstrap: All done!"
