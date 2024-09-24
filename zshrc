@@ -19,9 +19,6 @@ if [ -e ${private} ]; then
   . ${private}
 fi
 
-# THEMES
-ZSH_THEME="~/.zsh/agnoster.zsh-theme"
-
 # ===========================================================
 # =              EXPORTS                                    =
 # ===========================================================
@@ -101,7 +98,7 @@ eval "$(direnv hook zsh)"
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="robbyrussell"
-export ZSH_THEME="smt"
+export ZSH_THEME="eastwood"
 
 plugins=(git direnv)
 

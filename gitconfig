@@ -39,3 +39,10 @@
     push = push --force-with-lease
 [maintenance]
 	repo = /Users/bolaji/Developer/annie/api
+[safe]
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
+	directory = /Users/bolaji/Desktop/actions-runner/_work/ng-banks/ng-banks
