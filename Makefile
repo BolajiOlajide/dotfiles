@@ -14,4 +14,7 @@ priv: $(HOME)/.private.sh
 bootstrap:
 	@./bootstrap.sh
 
-all: bootstrap priv git psql zsh
+setup:
+	@./setup.sh
+
+all: bootstrap priv git psql zsh setup
