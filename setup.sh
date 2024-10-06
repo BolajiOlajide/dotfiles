@@ -29,3 +29,8 @@ brew bundle --file=./Brewfile
 eval "$(ssh-agent -s)"
 
 cp ./ssh-config ~/.ssh/config
+
+if [[ -n "$USE_MISE" && "$USE_MISE" -eq 1 ]]; then
+    mkdir -p ~/.config/mise
+    ln -s "$(pwd)/mise.toml" ~/.config/mise/config.toml
+fi

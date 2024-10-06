@@ -1,4 +1,7 @@
+#!/bin/bash
+
 export ANNIE_DROPLET_IP_ADDRESS=
 export DYON_DROPLET_IP_ADDRESS=
 export DIGITALOCEAN_ACCESS_TOKEN=
 export NODE_ENV="development"
+export USE_MISE=

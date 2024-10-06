@@ -89,10 +89,16 @@ export ZSH=$HOME/.oh-my-zsh
 # export ZSH_THEME="robbyrussell"
 export ZSH_THEME="eastwood"
 
-plugins=(git direnv)
+plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # -------------------------------------------------------------------
 # make some commands (potentially) less destructive
 # -------------------------------------------------------------------
 alias 'rm=rm -i'
+
+# check if USE_MISE is set and it's equal to 1
+if [[ -n "$USE_MISE" && "$USE_MISE" -eq 1 ]]; then
+  # activate mise
+  eval "$(mise activate)"
+fi
