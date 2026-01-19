@@ -2,6 +2,58 @@
 
 Personal dotfiles for macOS. Includes shell configuration, git settings, and development tools.
 
+## Installation Flow
+
+```mermaid
+flowchart TD
+    A[git clone dotfiles] --> B[./bootstrap.sh]
+
+    subgraph bootstrap["bootstrap.sh"]
+        B --> C{Homebrew?}
+        C -->|No| D[Install Homebrew]
+        C -->|Yes| E{1Password CLI?}
+        D --> E
+        E -->|No| F[Install 1Password CLI]
+        E -->|Yes| G{Oh My Zsh?}
+        F --> G
+        G -->|No| H[Install Oh My Zsh]
+        G -->|Yes| I[Backup .zshrc]
+        H --> I
+    end
+
+    I --> J[make all]
+
+    subgraph makefile["make all"]
+        J --> K[make git]
+        J --> L[make psql]
+        J --> M[make zsh]
+        J --> N[make setup]
+
+        K --> K1[~/.gitconfig]
+        K --> K2[~/.gitignore]
+        L --> L1[~/.psqlrc]
+        M --> M1[~/.zshrc]
+    end
+
+    subgraph setup["setup.sh"]
+        N --> O[Generate SSH Keys]
+        O --> O1[~/.ssh/git]
+        O --> O2[~/.ssh/id_ed25519]
+        O --> O3[~/.ssh/git_rsa]
+        O --> P[brew bundle]
+        P --> Q[Copy ssh-config]
+        Q --> R{USE_MISE=1?}
+        R -->|Yes| S[Link mise.toml]
+        R -->|No| T[Done]
+        S --> T
+    end
+
+    T --> U[op signin]
+    U --> V[Ready!]
+
+    W[make macos] -.->|Optional| X[Configure macOS defaults]
+```
+
 ## What's Included
 
 | Config | Description |
