@@ -9,13 +9,6 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-if [ ! -e "private.sh" ]; then
-    log "private.sh not found. Exiting...."
-    exit 1
-else 
-    log "private.sh found. Proceeding..."
-fi
-
 # Check if Homebrew is installed
 if command_exists brew; then
     log "Homebrew is already installed."

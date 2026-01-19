@@ -8,8 +8,6 @@ git: $(HOME)/.gitconfig $(HOME)/.gitignore
 psql: $(HOME)/.psqlrc
 zsh: $(HOME)/.zshrc
 
-priv: $(HOME)/.private.sh
-
 # Define the bootstrap target to run the bootstrap.sh script
 bootstrap:
 	@./bootstrap.sh
@@ -17,4 +15,4 @@ bootstrap:
 setup:
 	@./setup.sh
 
-all: bootstrap priv git psql zsh setup
+all: bootstrap git psql zsh setup

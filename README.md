@@ -18,6 +18,7 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
 
 - macOS (Apple Silicon or Intel)
 - Git
+- [1Password CLI](https://developer.1password.com/docs/cli/) (`op`) for secrets management
 
 ## Install
 
@@ -27,13 +28,7 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
    cd ~/.dotfiles
    ```
 
-2. Create your private config (required):
-   ```bash
-   touch private.sh
-   # Add any private environment variables
-   ```
-
-3. Run the install:
+2. Run the install:
    ```bash
    ./bootstrap.sh && make all
    ```
@@ -76,7 +71,7 @@ brew bundle cleanup --force --file=./Brewfile
 ## Key Features
 
 - **Apple Silicon compatible** - Uses `$HOMEBREW_PREFIX` for portable paths
-- **1Password integration** - Lazy-loaded credentials for fast shell startup
+- **1Password integration** - Secrets loaded via `op` CLI (no plaintext files)
 - **SSH signing** - Git commits signed with SSH key
 - **Modern tools** - bat, fzf, ripgrep, diff-so-fancy, atuin
 - **Version management** - mise for Go, Node, Python
