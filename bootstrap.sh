@@ -42,9 +42,9 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
     log "Oh My Zsh is already installed."
 else
     log "Oh My Zsh is not installed. Installing Oh My Zsh..."
-    # Install Oh My Zsh
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    
+    # Install Oh My Zsh (--unattended skips prompts and shell change)
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
     # Check if installation was successful
     if [ -d "$HOME/.oh-my-zsh" ]; then
         log "Oh My Zsh installed successfully."
@@ -55,6 +55,10 @@ else
 fi
 
 # delete existing .zshrc so that linking works
-rm -rf ~/.zshrc
+if [ -f ~/.zshrc ]; then
+    log "Backing up existing .zshrc to ~/.zshrc.backup"
+    cp ~/.zshrc ~/.zshrc.backup
+    rm -f ~/.zshrc
+fi
 
 log "Bootstrap: All done!"

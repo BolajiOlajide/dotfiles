@@ -21,7 +21,14 @@ done
 
 
 
-ssh-keygen -t rsa -b 4096 -f "$SSH_KEY_PATH" -N "" -C "$SSH_EMAIL" <<< y >/dev/null 2>&1
+# Generate RSA key only if it doesn't already exist
+RSA_KEY_PATH="$HOME/.ssh/git_rsa"
+if [ ! -f "$RSA_KEY_PATH" ]; then
+    ssh-keygen -t rsa -b 4096 -f "$RSA_KEY_PATH" -N "" -C "$SSH_EMAIL" <<< y >/dev/null 2>&1
+    echo "RSA SSH key generated at $RSA_KEY_PATH"
+else
+    echo "RSA SSH key already exists at $RSA_KEY_PATH"
+fi
 
 # setup brew
 brew bundle --file=./Brewfile
@@ -32,5 +39,5 @@ cp ./ssh-config ~/.ssh/config
 
 if [[ -n "$USE_MISE" && "$USE_MISE" -eq 1 ]]; then
     mkdir -p ~/.config/mise
-    ln -s "$(pwd)/mise.toml" ~/.config/mise/config.toml
+    ln -sf "$(pwd)/mise.toml" ~/.config/mise/config.toml
 fi
