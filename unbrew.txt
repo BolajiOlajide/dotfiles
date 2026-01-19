@@ -1,0 +1,27 @@
+# Applications not available on Homebrew (manual install only)
+# These need to be installed from their respective sources
+
+# Video/Audio Production
+DaVinci Resolve          # https://www.blackmagicdesign.com/products/davinciresolve
+Serato Studio            # https://serato.com/studio
+Syntorial                # https://www.syntorial.com
+Mixed In Key 11          # https://mixedinkey.com
+Dubler2                  # https://vochlea.com
+BA-1                     # Audio plugin
+Bloom                    # Audio plugin
+reFX Cloud               # https://refx.com
+iLok License Manager     # https://www.ilok.com
+Focusrite Control        # https://focusrite.com
+MiniMeters               # Audio metering
+
+# Apple/Developer Tools
+Xcode                    # Mac App Store
+SF Symbols               # Apple Developer (https://developer.apple.com/sf-symbols/)
+
+# Productivity
+Things 3                 # Mac App Store
+Flighty                  # Mac App Store
+
+# Other
+Antigravity              # Custom/internal tool
+Openwork                 # Custom/internal tool
