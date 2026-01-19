@@ -15,4 +15,7 @@ bootstrap:
 setup:
 	@./setup.sh
 
+macos:
+	@./macos.sh
+
 all: bootstrap git psql zsh setup

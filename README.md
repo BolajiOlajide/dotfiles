@@ -13,6 +13,7 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
 | `ssh-config` | SSH client configuration |
 | `mise.toml` | Version manager for Go, Node, Python |
 | `Brewfile` | Homebrew packages and casks |
+| `macos.sh` | macOS system preferences automation |
 
 ## Requirements
 
@@ -51,6 +52,7 @@ This will:
 make all        # Full setup (bootstrap + symlinks + setup)
 make bootstrap  # Install Homebrew, 1Password CLI, and Oh My Zsh
 make setup      # Generate SSH keys, install brew packages
+make macos      # Configure macOS system preferences
 make git        # Symlink git config files only
 make zsh        # Symlink zshrc only
 make psql       # Symlink psqlrc only
@@ -81,6 +83,7 @@ brew bundle cleanup --force --file=./Brewfile
 - **Modern tools** - bat, fzf, ripgrep, diff-so-fancy, atuin
 - **Version management** - mise for Go, Node, Python
 - **Docker** - OrbStack integration
+- **macOS automation** - System preferences via `defaults` commands
 
 ## Shell Aliases
 
