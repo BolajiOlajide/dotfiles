@@ -58,9 +58,20 @@ export PATH
 # This avoids slow shell startup from `op read` commands
 _load_op_vars() {
   if [[ -z "$_OP_VARS_LOADED" ]]; then
-    export ANNIE_USER="$(op read "op://Private/Local Env Vars/ANNIE_SSH_USER")"
-    export ANNIE_DROPLET_IP_ADDRESS="$(op read "op://Private/Local Env Vars/ANNIE_DROPLET_IP")"
-    export DIGITALOCEAN_ACCESS_TOKEN="$(op read "op://Private/Local Env Vars/DIGITALOCEAN_ACCESS_TOKEN")"
+    if ! command -v op &>/dev/null; then
+      echo "Warning: 1Password CLI (op) not found. Install with: brew install --cask 1password-cli"
+      return 1
+    fi
+
+    # Check if signed in (op account list returns non-zero if not configured)
+    if ! op account list &>/dev/null; then
+      echo "Warning: 1Password CLI not signed in. Run: op signin"
+      return 1
+    fi
+
+    export ANNIE_USER="$(op read "op://Private/Local Env Vars/ANNIE_SSH_USER" 2>/dev/null)"
+    export ANNIE_DROPLET_IP_ADDRESS="$(op read "op://Private/Local Env Vars/ANNIE_DROPLET_IP" 2>/dev/null)"
+    export DIGITALOCEAN_ACCESS_TOKEN="$(op read "op://Private/Local Env Vars/DIGITALOCEAN_ACCESS_TOKEN" 2>/dev/null)"
     export _OP_VARS_LOADED=1
   fi
 }

@@ -30,6 +30,22 @@ else
     fi
 fi
 
+# Install 1Password CLI early (required for secrets management)
+if command_exists op; then
+    log "1Password CLI is already installed."
+else
+    log "Installing 1Password CLI..."
+    brew install --cask 1password-cli
+
+    if command_exists op; then
+        log "1Password CLI installed successfully."
+        log "Run 'op signin' to authenticate with your 1Password account."
+    else
+        log "Failed to install 1Password CLI."
+        exit 1
+    fi
+fi
+
 # Check if Oh My Zsh is installed
 if [ -d "$HOME/.oh-my-zsh" ]; then
     log "Oh My Zsh is already installed."
