@@ -3,3 +3,4 @@ node_modules
 .tool-versions
 .idea
 .env
+CLAUDE.md
