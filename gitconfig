@@ -2,38 +2,83 @@
 	name = Bolaji Olajide
 	email = 25608335+BolajiOlajide@users.noreply.github.com
 	username = BolajiOlajide
-    signingKey = ~/.ssh/git.pub
+	signingKey = ~/.ssh/git.pub
 [init]
 	defaultBranch = main
+[log]
+	abbrevCommit = true
+	graphColors = blue,yellow,cyan,magenta,green,red
 [gpg]
-    format = ssh
+	format = ssh
+[status]
+	branch = true
+	showStash = true
+[url "git@github.com:"]
+	insteadOf = "gh:"
+[url "git@github.com:BolajiOlajide/"]
+	insteadOf = "bj:"
 [core]
+	compression = 9 # trade some CPU to speed up network requests
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 	autocrlf = input
 [commit]
-    gpgsign = true
-    verbose = true
+	gpgsign = true
+	verbose = true
 [pager]
+	branch = false
+	tag = false
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
-    show = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+[diff-so-fancy]
+	markEmptyLines = false
 [remote]
-    pushDefault = origin
+	pushDefault = origin
+[diff]
+	context = 3
+	renames = copies
+	interHunkContext = 10
+[rebase]
+	autoStash = true
+	missingCommitsCheck = warn
+[fetch]
+	prune = true
 [pull]
 	rebase = true
+[color "diff"]
+	meta = black bold
+	frag = magenta
+	context = white
+	whitespace = yellow reverse
+	old = red
 [color]
-    diff = auto
-    status = auto
-    branch = auto
+	HEAD = red
+	status = auto
+	tag = yellow
+	remoteBranch = magenta
 	ui = true
+[color "branch"]
+	current = magenta
+	local = default
+	remote = yellow
+	upstream = green
+	plain = blue
+[tag]
+	sort = -taggerdate
 [push]
-    autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 [column]
-    ui = auto
+	ui = auto
 [branch]
-    sort = -committerdate
+	sort = -committerdate
 [alias]
-    staash = stash --all
-    blaame = blame -w -C -C -C
-    push = push --force-with-lease
+	staash = stash --all
+	blaame = blame -w -C -C -C
+	push = push --force-with-lease
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
