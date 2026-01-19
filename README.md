@@ -18,7 +18,6 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
 
 - macOS (Apple Silicon or Intel)
 - Git
-- [1Password CLI](https://developer.1password.com/docs/cli/) (`op`) for secrets management
 
 ## Install
 
@@ -33,8 +32,14 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
    ./bootstrap.sh && make all
    ```
 
+3. Sign in to 1Password CLI:
+   ```bash
+   op signin
+   ```
+
 This will:
 - Install Homebrew (if not present)
+- Install 1Password CLI (for secrets management)
 - Install Oh My Zsh (if not present)
 - Create symlinks for all config files
 - Generate SSH keys
@@ -44,7 +49,7 @@ This will:
 
 ```bash
 make all        # Full setup (bootstrap + symlinks + setup)
-make bootstrap  # Install Homebrew and Oh My Zsh
+make bootstrap  # Install Homebrew, 1Password CLI, and Oh My Zsh
 make setup      # Generate SSH keys, install brew packages
 make git        # Symlink git config files only
 make zsh        # Symlink zshrc only
