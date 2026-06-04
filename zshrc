@@ -133,6 +133,7 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # Development
 alias got="go test ./..."
 alias ppm="pnpm"
+alias gs="git-spice"
 
 # Nuke node modules and reinstall
 alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; elif [ -f pnpm-lock.yaml ]; then pnpm install; else npm install; fi;'
