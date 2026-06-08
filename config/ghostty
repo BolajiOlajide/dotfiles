@@ -1,0 +1,47 @@
+# ── Theme ─────────────────────────────────────────
+# If catppuccin-mocha isn't found, run: ghostty +list-themes
+# and pick one that exists. Safe built-in fallbacks shown below.
+theme = dark:"Catppuccin Mocha",light:"Catppuccin Latte"
+background-opacity = 0.92
+background-blur = 24
+# background-image = ~/Pictures/term/dark-nebula.png
+# background-image-opacity = 0.12
+# background-image-fit = cover
+
+# ── Typography ────────────────────────────────────
+font-family = "JetBrains Mono"
+font-size = 14
+# font-thicken is macOS only; no-op on Linux
+font-thicken = true
+adjust-cell-height = 18%
+
+# ── Frosted glass ─────────────────────────────────
+background-opacity = 0.92
+background-blur = 24
+
+# ── Breathing room ────────────────────────────────
+window-padding-x = 16
+window-padding-y = 14
+window-padding-balance = true
+
+# ── Cursor ────────────────────────────────────────
+cursor-style = block
+cursor-style-blink = true
+# no-cursor keeps the block cursor at the prompt
+shell-integration-features = no-cursor
+
+# ── Window chrome (macOS) ─────────────────────────
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+# window-colorspace is macOS wide-gamut only
+window-colorspace = display-p3
+
+# ── Quality of life ───────────────────────────────
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+confirm-close-surface = false
+
+# ── Splits & navigation ───────────────────────────
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+enter=toggle_fullscreen

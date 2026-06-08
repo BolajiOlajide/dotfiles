@@ -180,13 +180,9 @@ fi
 [[ -s "$HOMEBREW_PREFIX/share/zsh/site-functions/_bun" ]] && source "$HOMEBREW_PREFIX/share/zsh/site-functions/_bun"
 
 # gcloud init
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-export CLOUDSDK_PYTHON=$(which python3)
+#source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+#export CLOUDSDK_PYTHON=$(which python3)
 
 # bun completions
 [ -s "/Users/bolajiolajide/.bun/_bun" ] && source "/Users/bolajiolajide/.bun/_bun"
 
-export RAILWAY_NO_TELEMETRY=1
-
-# opencode
-export PATH=/Users/bolajiolajide/.opencode/bin:$PATH
