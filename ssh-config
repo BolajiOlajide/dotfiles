@@ -1,3 +1,15 @@
+# OrbStack: 'orb' SSH host for Linux machines.
+# Must come before any Host blocks. Silently ignored if OrbStack isn't installed.
+Include ~/.orbstack/ssh/config
+
+# Conductor per-machine config. Silently ignored if the file doesn't exist.
+Include ~/.ssh/conductor_config
+
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/git
+
 Host *
   AddKeysToAgent yes
   UseKeychain yes

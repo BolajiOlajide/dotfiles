@@ -2,8 +2,6 @@
 
 set -ex
 
-# Set the file path for the SSH key for git
-SSH_KEY_PATH="$HOME/.ssh/git"
 SSH_EMAIL="25608335+BolajiOlajide@users.noreply.github.com"
 
 ssh_keys_name=(git id_ed25519)
@@ -35,14 +33,5 @@ brew bundle --file=./Brewfile
 
 eval "$(ssh-agent -s)"
 
-# Backup existing SSH config before overwriting
-if [[ -f ~/.ssh/config && ! -L ~/.ssh/config ]]; then
-    cp ~/.ssh/config ~/.ssh/config.backup.$(date +%Y%m%d%H%M%S)
-    echo "Backed up existing SSH config"
-fi
-cp ./ssh-config ~/.ssh/config
-
-if [[ -n "$USE_MISE" && "$USE_MISE" -eq 1 ]]; then
-    mkdir -p ~/.config/mise
-    ln -sf "$(pwd)/mise.toml" ~/.config/mise/config.toml
-fi
+# Note: symlinking of config files (ssh config, mise, etc.) is handled by
+# sync.sh / `make sync`.

@@ -15,6 +15,8 @@
 	showStash = true
 [url "git@github.com:"]
 	insteadOf = "gh:"
+	# Always use SSH for GitHub, even when a remote was cloned over HTTPS.
+	insteadOf = "https://github.com/"
 [url "git@github.com:BolajiOlajide/"]
 	insteadOf = "bj:"
 [core]

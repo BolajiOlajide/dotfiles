@@ -1,17 +1,20 @@
 UNAME := $(shell uname)
 DOTFILE_PATH := $(shell pwd)
 
-.PHONY: all bootstrap setup macos git psql zsh hunk
+.PHONY: all bootstrap sync setup macos skill
 
-$(HOME)/.%: %
-	ln -sf $(DOTFILE_PATH)/$^ $@
+.DEFAULT_GOAL := all
 
-git: $(HOME)/.gitconfig $(HOME)/.gitignore
-psql: $(HOME)/.psqlrc
-zsh: $(HOME)/.zshrc
-hunk:
-	mkdir -p $(HOME)/.config/hunk
-	ln -sf $(DOTFILE_PATH)/hunk.config.toml $(HOME)/.config/hunk/config.toml
+# Symlink every config file into place (safe, backs up real files).
+sync:
+	@./sync.sh
+
+# Scaffold a new agent skill and link it. Interactive when run bare:
+#   make skill
+# Or pass args:
+#   make skill name=my-skill desc="..."
+skill:
+	@./ai/new-skill.sh "$(name)" "$(desc)"
 
 # Define the bootstrap target to run the bootstrap.sh script
 bootstrap:
@@ -23,4 +26,4 @@ setup:
 macos:
 	@./macos.sh
 
-all: bootstrap git psql zsh setup hunk
+all: bootstrap sync setup
