@@ -1,10 +1,6 @@
 # Agent Instructions (global)
 
-Machine-wide instructions for all coding agents (Claude Code, Codex, Amp). This
-file is the single source of truth — `sync.sh` symlinks it to each tool's global
-config (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.config/amp/AGENTS.md`).
-Edit it here in the dotfiles repo, not at the symlink targets. These rules apply
-to every repository on this machine.
+Machine-wide conventions that apply to every repository on this machine.
 
 ## GitHub
 

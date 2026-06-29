@@ -1,9 +1,11 @@
 # Agent Instructions (this repo)
 
 Guidance for working **inside this dotfiles repo**. Machine-wide conventions
-(GitHub, branches, commits, PRs) live in `ai/global.md`, which `sync.sh`
-symlinks to every agent's global config — edit *that* file for rules that should
-apply everywhere, and this file only for dotfiles-specific guidance.
+(GitHub, branches, commits, PRs) live in `ai/global.md`, the single source of
+truth that `sync.sh` symlinks to every agent's global config
+(`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.config/amp/AGENTS.md`). Edit
+`ai/global.md` here in the repo (not at the symlink targets) for rules that
+should apply everywhere, and edit this file only for dotfiles-specific guidance.
 
 ## Symlink workflow
 
