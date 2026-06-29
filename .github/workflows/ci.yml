@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shell:
+    name: Shell lint + syntax
+    runs-on: ubuntu-latest
+    env:
+      SCRIPTS: sync.sh setup.sh bootstrap.sh ai/new-skill.sh macos.sh
+    steps:
+      - uses: actions/checkout@v4
+
+      # shellcheck is preinstalled on ubuntu runners.
+      - name: shellcheck
+        run: shellcheck $SCRIPTS
+
+      - name: bash -n
+        run: for f in $SCRIPTS; do bash -n "$f"; done
+
+      # zsh is not preinstalled on the runner; install it there (not on a
+      # developer machine) only to syntax-check zshrc.
+      - name: zsh -n
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh
+          zsh -n zshrc
+
+  config:
+    name: Config + skill validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TOML parses
+        run: |
+          python3 - <<'PY'
+          import sys, tomllib, glob
+          bad = False
+          for f in glob.glob("**/*.toml", recursive=True):
+              try:
+                  tomllib.load(open(f, "rb"))
+                  print("ok:", f)
+              except Exception as e:
+                  print("FAIL:", f, "->", e); bad = True
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: SKILL.md frontmatter
+        run: |
+          python3 - <<'PY'
+          import sys, re, glob
+          bad = False
+          files = glob.glob("ai/skills/*/SKILL.md")
+          if not files:
+              print("no SKILL.md files found"); sys.exit(0)
+          for f in files:
+              text = open(f).read()
+              m = re.match(r"^---\n(.*?)\n---", text, re.S)
+              fm = m.group(1) if m else ""
+              ok = bool(re.search(r"^name:\s*\S", fm, re.M)) and \
+                   bool(re.search(r"^description:\s*\S", fm, re.M))
+              print(("ok: " if ok else "FAIL: ") + f)
+              bad = bad or not ok
+          sys.exit(1 if bad else 0)
+          PY
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
