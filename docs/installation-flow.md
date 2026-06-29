@@ -5,9 +5,9 @@ ready environment. See the [README](../README.md) for usage.
 
 ```mermaid
 flowchart TD
-    A[git clone dotfiles] --> B[./bootstrap.sh]
+    A[git clone dotfiles] --> B[./scripts/bootstrap.sh]
 
-    subgraph bootstrap["bootstrap.sh"]
+    subgraph bootstrap["scripts/bootstrap.sh"]
         B --> C{Homebrew?}
         C -->|No| D[Install Homebrew]
         C -->|Yes| E{1Password CLI?}
@@ -26,7 +26,7 @@ flowchart TD
         J --> SY[make sync]
         J --> N[make setup]
 
-        subgraph sync["sync.sh — safelink (backs up real files)"]
+        subgraph sync["scripts/sync.sh — safelink (backs up real files)"]
             SY --> K1[~/.gitconfig, ~/.gitignore]
             SY --> L1[~/.psqlrc]
             SY --> M1[~/.zshrc]
@@ -39,7 +39,7 @@ flowchart TD
             SY --> SK[ai/skills/* → Claude / Codex / Amp]
         end
 
-        subgraph setup["setup.sh"]
+        subgraph setup["scripts/setup.sh"]
             N --> O[Generate SSH Keys]
             O --> O1[~/.ssh/git]
             O --> O2[~/.ssh/id_ed25519]

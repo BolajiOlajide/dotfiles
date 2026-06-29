@@ -5,7 +5,9 @@
 
 set -euo pipefail
 
-cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+# This script lives in scripts/; the repo root (where config sources live) is
+# its parent directory.
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 REPO=$(pwd -P)
 
 # safelink SRC DST
@@ -44,24 +46,24 @@ safelink() {
 }
 
 # Home-directory dotfiles
-safelink gitconfig "$HOME/.gitconfig"
-safelink gitignore "$HOME/.gitignore"
-safelink psqlrc    "$HOME/.psqlrc"
-safelink zshrc     "$HOME/.zshrc"
+safelink config/git/gitconfig "$HOME/.gitconfig"
+safelink config/git/gitignore "$HOME/.gitignore"
+safelink config/psql/psqlrc   "$HOME/.psqlrc"
+safelink config/zsh/zshrc     "$HOME/.zshrc"
 
 # ~/.config files
-safelink hunk.config.toml "$HOME/.config/hunk/config.toml"
+safelink config/hunk/config.toml "$HOME/.config/hunk/config.toml"
 
 # Ghostty: on macOS the app reads ~/Library/Application Support/...ghostty/config
 # and that location overrides the XDG path, so link it there. Elsewhere (Linux)
 # Ghostty uses the XDG path.
 case "$OSTYPE" in
-    darwin*) safelink config/ghostty "$HOME/Library/Application Support/com.mitchellh.ghostty/config" ;;
-    *)       safelink config/ghostty "$HOME/.config/ghostty/config" ;;
+    darwin*) safelink config/ghostty/config "$HOME/Library/Application Support/com.mitchellh.ghostty/config" ;;
+    *)       safelink config/ghostty/config "$HOME/.config/ghostty/config" ;;
 esac
 
 # SSH config (was previously copied with a manual backup; now symlinked)
-safelink ssh-config "$HOME/.ssh/config"
+safelink config/ssh/config "$HOME/.ssh/config"
 
 # Conductor global settings (shared across machines; ~/.conductor/projects is
 # per-machine state and intentionally left untracked).
@@ -69,7 +71,7 @@ safelink ai/conductor/settings.toml "$HOME/.conductor/settings.toml"
 
 # mise (opt-in via USE_MISE, matching setup.sh's previous behavior)
 if [[ ${USE_MISE:-} == 1 ]]; then
-    safelink mise.toml "$HOME/.config/mise/config.toml"
+    safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
 fi
 
 # Shared *global* agent instructions: one source of truth, applied to every repo

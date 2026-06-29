@@ -13,7 +13,7 @@ jobs:
     name: Shell lint + syntax
     runs-on: ubuntu-latest
     env:
-      SCRIPTS: sync.sh setup.sh bootstrap.sh ai/new-skill.sh macos.sh
+      SCRIPTS: scripts/sync.sh scripts/setup.sh scripts/bootstrap.sh ai/new-skill.sh scripts/macos.sh
     steps:
       - uses: actions/checkout@v7
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y zsh
-          zsh -n zshrc
+          zsh -n config/zsh/zshrc
 
   config:
     name: Config + skill validation
