@@ -180,3 +180,4 @@ fi
 # bun completions
 [ -s "/Users/bolajiolajide/.bun/_bun" ] && source "/Users/bolajiolajide/.bun/_bun"
 
+export RAILWAY_NO_TELEMETRY=1
