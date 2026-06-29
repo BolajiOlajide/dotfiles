@@ -1,100 +1,92 @@
-tap "charmbracelet/tap"
-tap "epk/epk"
-tap "homebrew/bundle"
-tap "homebrew/services"
-tap "oven-sh/bun"
-brew "act"
-brew "ansible"
-brew "atuin"
+tap "ampcode/tap"
+tap "modem-dev/tap"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-brew "bazel"
-brew "binwalk"
-brew "bun"
-brew "charmbracelet/tap/crush"
-brew "cocoapods"
-brew "comby"
-brew "diff-so-fancy"
+# Load/unload environment variables based on $PWD
 brew "direnv"
-brew "doctl"
-brew "fd"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-brew "flyctl"
-brew "fzf"
+# GitHub command-line tool
 brew "gh"
-brew "git-lfs"
-brew "gradle"
-brew "helix"
-brew "helm"
-brew "heroku"
-brew "hey"
-brew "jj"
-brew "jprq"
-brew "jq"
-brew "libpq"
+# Manage stacked Git branches
+brew "git-spice"
+# Live reload for Go apps
+brew "go-air"
+# Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Deep clean and optimize your Mac
 brew "mole"
-brew "mvfst"
-brew "nicotine-plus"
-brew "ollama"
-brew "openjdk@17"
+# Fast, disk space efficient package manager
 brew "pnpm"
-brew "poppler"
-brew "postgresql@16", restart_service: true
-brew "prettyping"
-brew "redis", restart_service: true
-brew "ripgrep"
-brew "ruby"
+# Object-relational database system
+brew "postgresql@17", restart_service: :changed, link: true
+# Persistent key-value database, with built-in net interface
+brew "redis", restart_service: :changed
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-brew "terraform"
-brew "watchman"
-cask "1password"
+# Generate type safe Go from SQL
+brew "sqlc"
+# CLI for Amp, the frontier coding agent
+brew "ampcode/tap/ampcode", trusted: true
+# Desktop-inspired terminal diff viewer for agent-authored changesets
+brew "modem-dev/tap/hunk", trusted: true
+# Command-line interface for 1Password
 cask "1password-cli"
-cask "ableton-live-suite"
-cask "android-studio"
-cask "arc"
-cask "cleanmymac"
-cask "cleanshot"
-cask "cursor"
-cask "discord"
-cask "figma"
-cask "font-hack-nerd-font"
-cask "font-sf-mono-nerd-font"
-cask "iina"
-cask "logi-options+"
-cask "ngrok"
-cask "notion"
-cask "notion-calendar"
-cask "obsidian"
-cask "orbstack"
-cask "postico"
-cask "raycast"
-cask "screen-studio"
-cask "slack"
-cask "spotify"
-cask "zoom"
-
-# Additional apps (previously installed manually)
+# Image editing and design software
 cask "affinity"
-cask "antinote"
-cask "audacity"
+# Tools for building Android applications
+cask "android-studio"
+# Records audio from any application
 cask "audio-hijack"
-cask "claude"
+# File manager
+cask "bloom"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# Screen capturing tool
+cask "cleanshot"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Collaborative team software
+cask "figma"
+# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-cask "goland"
-cask "google-chrome"
-cask "httpie-desktop"
-cask "intellij-idea"
+# Free and open-source media player
+cask "iina"
+# Cable-free audio router
 cask "loopback"
+# VPN client for secure internet access and private browsing
 cask "nordvpn"
-cask "notchnook"
-cask "obs"
+# App to write, plan, collaborate, and get organised
+cask "notion"
+# Calendar for professionals and teams
+cask "notion-calendar"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# All system and utility switches in one place
 cask "one-switch"
+# Replacement for Docker Desktop
+cask "orbstack"
+# HTTP debugging proxy
 cask "proxyman"
+# Team communication and collaboration software
+cask "slack"
+# Browse and preview sounds from Splice’s entire catalog
 cask "splice"
+# Music streaming service
+cask "spotify"
+# Open-source media center
 cask "stremio"
+# Dictation tool including LLM reformatting
 cask "superwhisper"
+# Native GUI tool for relational databases
 cask "tableplus"
-cask "telegram"
+# Unpacks archive files
 cask "the-unarchiver"
-cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
+# Multiplayer code editor
 cask "zed"
+# Video communication and virtual meeting platform
+cask "zoom"
+go "golang.org/x/tools/cmd/goimports"
+npm "corepack"
