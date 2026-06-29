@@ -1,0 +1,12 @@
+"$schema" = "https://conductor.build/schemas/settings.schema.json"
+
+[git]
+branch_prefix_type = "github_username"
+
+[models]
+default = "opus-4-8-1m"
+review = "gpt-5.5"
+
+[models.codex]
+default_thinking_level = "high"
+review_thinking_level = "high"
