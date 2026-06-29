@@ -2,8 +2,6 @@
 
 set -ex
 
-# Set the file path for the SSH key for git
-SSH_KEY_PATH="$HOME/.ssh/git"
 SSH_EMAIL="25608335+BolajiOlajide@users.noreply.github.com"
 
 ssh_keys_name=(git id_ed25519)
