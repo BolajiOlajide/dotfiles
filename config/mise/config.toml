@@ -2,3 +2,8 @@
 go = "1.26.4" # latest stable (29-JUNE-2026)
 node = "24.18.0" # lts
 python = "3.14.6" # lts
+
+# kat — installed straight from GitHub releases via the github backend, which
+# auto-detects the kat_{os}_{arch}.tar.gz asset for this machine. (Replaces the
+# now-deprecated ubi backend.)
+"github:BolajiOlajide/kat" = "0.2.1"
