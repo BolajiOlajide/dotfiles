@@ -4,68 +4,40 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
 
 ## Installation Flow
 
-```mermaid
-flowchart TD
-    A[git clone dotfiles] --> B[./bootstrap.sh]
-
-    subgraph bootstrap["bootstrap.sh"]
-        B --> C{Homebrew?}
-        C -->|No| D[Install Homebrew]
-        C -->|Yes| E{1Password CLI?}
-        D --> E
-        E -->|No| F[Install 1Password CLI]
-        E -->|Yes| G{Oh My Zsh?}
-        F --> G
-        G -->|No| H[Install Oh My Zsh]
-        G -->|Yes| I[Backup .zshrc]
-        H --> I
-    end
-
-    I --> J[make all]
-
-    subgraph makefile["make all"]
-        J --> K[make git]
-        J --> L[make psql]
-        J --> M[make zsh]
-        J --> N[make setup]
-
-        K --> K1[~/.gitconfig]
-        K --> K2[~/.gitignore]
-        L --> L1[~/.psqlrc]
-        M --> M1[~/.zshrc]
-    end
-
-    subgraph setup["setup.sh"]
-        N --> O[Generate SSH Keys]
-        O --> O1[~/.ssh/git]
-        O --> O2[~/.ssh/id_ed25519]
-        O --> O3[~/.ssh/git_rsa]
-        O --> P[brew bundle]
-        P --> Q[Copy ssh-config]
-        Q --> R{USE_MISE=1?}
-        R -->|Yes| S[Link mise.toml]
-        R -->|No| T[Done]
-        S --> T
-    end
-
-    T --> U[op signin]
-    U --> V[Ready!]
-
-    W[make macos] -.->|Optional| X[Configure macOS defaults]
-```
+See [docs/installation-flow.md](docs/installation-flow.md) for a diagram of how
+the install scripts and `make` targets fit together.
 
 ## What's Included
 
 | Config | Description |
 |--------|-------------|
-| `zshrc` | Zsh configuration with Oh My Zsh, aliases, and PATH setup |
-| `gitconfig` | Git settings with SSH signing, aliases, and diff-so-fancy |
+| `zshrc` | Zsh configuration with Oh My Zsh, aliases, and ordered PATH setup |
+| `gitconfig` | Git settings with SSH signing, aliases, and the `hunk` pager |
 | `gitignore` | Global gitignore patterns |
 | `psqlrc` | PostgreSQL CLI configuration |
 | `ssh-config` | SSH client configuration |
+| `hunk.config.toml` | Config for the `hunk` git diff pager |
+| `config/ghostty` | Ghostty terminal configuration |
 | `mise.toml` | Version manager for Go, Node, Python |
+| `ai/` | AI tooling — global agent instructions, skills, Conductor config (see below) |
+| `AGENTS.md` | Agent instructions specific to this dotfiles repo (stays at root so agents discover it) |
 | `Brewfile` | Homebrew packages and casks |
+| `sync.sh` | Safe symlink installer (backs up real files before linking) |
 | `macos.sh` | macOS system preferences automation |
+
+### AI tooling (`ai/`)
+
+Everything related to AI coding agents lives under `ai/`:
+
+| Path | Description |
+|------|-------------|
+| `ai/global.md` | Machine-wide agent instructions, symlinked to Claude Code, Codex, and Amp |
+| `ai/skills/` | Shared agent skills, symlinked into Claude/Codex/Amp (see [ai/skills/README.md](ai/skills/README.md)) |
+| `ai/conductor/settings.toml` | Conductor global settings (shared across machines) |
+| `ai/new-skill.sh` | Skill scaffolder (`make skill`) |
+
+The repo-local `AGENTS.md` stays at the root so agents working *in this repo*
+auto-discover it.
 
 ## Requirements
 
@@ -76,13 +48,13 @@ flowchart TD
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/BolajiOlajide/dotfiles.git ~/.dotfiles
-   cd ~/.dotfiles
+   git clone https://github.com/BolajiOlajide/dotfiles.git ~/dotfiles
+   cd ~/dotfiles
    ```
 
-2. Run the install:
+2. Run the install (`make all` runs bootstrap, sync, and setup in order):
    ```bash
-   ./bootstrap.sh && make all
+   make all
    ```
 
 3. Sign in to 1Password CLI:
@@ -101,14 +73,21 @@ This will:
 ## Makefile Targets
 
 ```bash
-make all        # Full setup (bootstrap + symlinks + setup)
+make all        # Full setup (bootstrap + sync + setup)
 make bootstrap  # Install Homebrew, 1Password CLI, and Oh My Zsh
+make sync       # Symlink all config files (safe: backs up real files)
 make setup      # Generate SSH keys, install brew packages
 make macos      # Configure macOS system preferences
-make git        # Symlink git config files only
-make zsh        # Symlink zshrc only
-make psql       # Symlink psqlrc only
+make skill      # Scaffold + link a new agent skill (interactive prompts)
 ```
+
+Symlinking is handled entirely by `sync.sh` (invoked via `make sync`). It is
+idempotent and safe to re-run: any existing *real* file at a destination is
+moved to `<file>.backup.<timestamp>` before the symlink is created, so a stale
+local config is never silently destroyed.
+
+`mise.toml` is opt-in — it's only linked when `USE_MISE=1` is set, e.g.
+`USE_MISE=1 make sync`.
 
 ## Homebrew
 
@@ -132,7 +111,7 @@ brew bundle cleanup --force --file=./Brewfile
 - **Apple Silicon compatible** - Uses `$HOMEBREW_PREFIX` for portable paths
 - **1Password integration** - Secrets loaded via `op` CLI (no plaintext files)
 - **SSH signing** - Git commits signed with SSH key
-- **Modern tools** - bat, fzf, ripgrep, diff-so-fancy, atuin
+- **Modern tools** - bat, fzf, ripgrep, hunk, atuin
 - **Version management** - mise for Go, Node, Python
 - **Docker** - OrbStack integration
 - **macOS automation** - System preferences via `defaults` commands
@@ -147,7 +126,10 @@ brew bundle cleanup --force --file=./Brewfile
 | `gst` | `git status --short` |
 | `ga` | `git add` |
 | `gd` | `git diff` |
+| `glo` | `git log --all --graph` (pretty) |
 | `gc` | `git commit` |
+| `gs` | `git-spice` |
+| `got` | `go test ./...` |
 | `cat` | `bat` |
 | `ping` | `prettyping` |
 | `nuke` | Remove node_modules and reinstall |
