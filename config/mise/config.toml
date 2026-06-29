@@ -1,4 +1,4 @@
 [tools]
-go = "1.24"
-node = "24.13.0"
-python = "3.11"
+go = "1.26.4" # latest stable (29-JUNE-2026)
+node = "24.18.0" # lts
+python = "3.14.6" # lts
