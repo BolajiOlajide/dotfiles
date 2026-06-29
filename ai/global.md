@@ -2,6 +2,10 @@
 
 Machine-wide conventions that apply to every repository on this machine.
 
+## Installing software
+
+Never install anything without my explicit approval. Before installing, tell me exactly which tool you want to install and the exact command you would run (e.g. `brew install shellcheck`), then wait for me to approve. This applies to every package manager and installer — Homebrew, npm/pnpm, pip/uv, cargo, `go install`, mise, `curl | sh`, and so on.
+
 ## GitHub
 
 Use the `gh` CLI for all GitHub interactions (issues, PRs, repos). It is already authenticated. 
