@@ -1,5 +1,7 @@
-theme = "graphite"   # graphite, midnight, paper, ember
-mode = "auto"        # auto, split, stack
+# theme: paper = light; graphite (default), midnight, ember = dark.
+# Leave commented to auto-detect terminal light/dark via OSC 11.
+# theme = "paper"
+mode = "auto"        # layout only: auto, split, stack (NOT light/dark)
 vcs = "git"          # git, jj
 watch = false
 exclude_untracked = false

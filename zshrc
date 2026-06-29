@@ -2,7 +2,7 @@
 # BASIC SETUP
 ##############
 
-typeset -U PATH
+typeset -U path PATH
 autoload -Uz colors && colors
 
 setopt pushdsilent              # setopt needed to silence pushd/popd messages
@@ -22,42 +22,36 @@ fi
 # =              PATH SETUP (consolidated)                  =
 # ===========================================================
 
-# GOLANG
+# Tool roots referenced in the path array below.
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
-PATH="$GOBIN:$PATH"
-
-# ANDROID / JAVA
-PATH="$HOMEBREW_PREFIX/opt/openjdk@17/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-PATH="$PATH:$ANDROID_HOME/emulator"
-PATH="$PATH:$ANDROID_HOME/platform-tools"
-
-# Homebrew packages
-PATH="$PATH:$HOMEBREW_PREFIX/opt/postgresql@16/bin"
-PATH="$PATH:$HOMEBREW_PREFIX/opt/libpq/bin"
-PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
-
-# Applications
-PATH="$PATH:/Applications/GoLand.app/Contents/MacOS"
-
-# PNPM
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Tools
-PATH="$HOME/.amp/bin:$PATH"
-PATH="$PATH:$HOME/.local/bin"
-PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-PATH="$HOME/.bun/bin:$PATH"
-
-# Ruby
+export PNPM_HOME="$HOME/Library/pnpm"
 export GEM_HOME="$HOME/.gem"
-PATH="$GEM_HOME/bin:$PATH"
 
+# One ordered, priority-based PATH. Entries earlier in the array win.
+# `typeset -U` (set at the top of this file) dedups; the `(N/)` glob qualifier
+# keeps only directories that actually exist (N = nullglob, / = dirs only), so
+# missing tools don't leave dead PATH entries.
+path=(
+    $HOME/bin
+    $GOBIN
+    $HOME/.local/bin
+    $HOME/.amp/bin
+    $HOME/.antigravity/antigravity/bin
+    $HOME/.bun/bin
+    $GEM_HOME/bin
+    $PNPM_HOME
+    $HOMEBREW_PREFIX/opt/ruby/bin
+    $HOMEBREW_PREFIX/opt/openjdk@17/bin
+    $HOMEBREW_PREFIX/opt/postgresql@16/bin
+    $HOMEBREW_PREFIX/opt/libpq/bin
+    $ANDROID_HOME/emulator
+    $ANDROID_HOME/platform-tools
+    /Applications/GoLand.app/Contents/MacOS
+    $path
+)
+path=($^path(N/))
 export PATH
 
 # ===========================================================
