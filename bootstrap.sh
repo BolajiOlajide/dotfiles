@@ -63,11 +63,8 @@ else
     fi
 fi
 
-# delete existing .zshrc so that linking works
-if [ -f ~/.zshrc ]; then
-    log "Backing up existing .zshrc to ~/.zshrc.backup"
-    cp ~/.zshrc ~/.zshrc.backup
-    rm -f ~/.zshrc
-fi
+# Note: ~/.zshrc (and every other config) is replaced safely by sync.sh /
+# `make sync`, which backs up any real file before symlinking. Bootstrap no
+# longer touches it, so `make all` stays idempotent.
 
 log "Bootstrap: All done!"
