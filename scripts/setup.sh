@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -ex
+set -euo pipefail
+
+# This script lives in scripts/; resolve the repo root so paths like the
+# Brewfile work regardless of the caller's working directory.
+REPO=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)
 
 SSH_EMAIL="25608335+BolajiOlajide@users.noreply.github.com"
 
@@ -29,7 +33,7 @@ else
 fi
 
 # setup brew
-brew bundle --file=./Brewfile
+brew bundle --file="$REPO/packages/Brewfile"
 
 eval "$(ssh-agent -s)"
 

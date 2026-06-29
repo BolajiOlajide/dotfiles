@@ -7,7 +7,7 @@ DOTFILE_PATH := $(shell pwd)
 
 # Symlink every config file into place (safe, backs up real files).
 sync:
-	@./sync.sh
+	@./scripts/sync.sh
 
 # Scaffold a new agent skill and link it. Interactive when run bare:
 #   make skill
@@ -16,14 +16,14 @@ sync:
 skill:
 	@./ai/new-skill.sh "$(name)" "$(desc)"
 
-# Define the bootstrap target to run the bootstrap.sh script
+# Define the bootstrap target to run the scripts/bootstrap.sh script
 bootstrap:
-	@./bootstrap.sh
+	@./scripts/bootstrap.sh
 
 setup:
-	@./setup.sh
+	@./scripts/setup.sh
 
 macos:
-	@./macos.sh
+	@./scripts/macos.sh
 
 all: bootstrap sync setup

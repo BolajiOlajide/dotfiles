@@ -14,8 +14,8 @@
 
 set -euo pipefail
 
-# This script lives in ai/; operate from the repo root so ./sync.sh and the
-# ai/skills paths resolve.
+# This script lives in ai/; operate from the repo root so ./scripts/sync.sh and
+# the ai/skills paths resolve.
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
 NAME_RE='^[a-z0-9]+(-[a-z0-9]+)*$'
@@ -97,7 +97,7 @@ echo "Created $file"
 # Symlink it into every provider. Keep sync.sh output visible so any
 # "Backed up ..." messages (real files being moved aside) aren't hidden.
 echo "Running sync.sh..."
-./sync.sh
+./scripts/sync.sh
 echo "Linked into Claude, Codex, and Amp via sync.sh"
 
 if [[ "$edit" == 1 ]]; then

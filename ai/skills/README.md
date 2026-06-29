@@ -5,7 +5,7 @@ agent. Each skill is one subdirectory containing a `SKILL.md` (with `name` +
 `description` frontmatter) and any optional `references/`, `scripts/`, or
 `assets/`.
 
-`sync.sh` symlinks each skill subdirectory into every provider's skills
+`scripts/sync.sh` symlinks each skill subdirectory into every provider's skills
 directory, so there's a single source of truth here:
 
 | Provider | Skills directory |
@@ -33,7 +33,7 @@ make skill name=my-skill desc="Use when ..."
 ```
 
 Either way it creates `ai/skills/my-skill/SKILL.md` with the frontmatter filled in
-and runs `sync.sh` to symlink it into every provider.
+and runs `scripts/sync.sh` to symlink it into every provider.
 
 To do it by hand instead: create `ai/skills/<name>/SKILL.md` with `name` +
 `description` frontmatter and run `make sync`.
@@ -41,4 +41,4 @@ To do it by hand instead: create `ai/skills/<name>/SKILL.md` with `name` +
 To remove a skill, delete its `ai/skills/<name>/` directory and re-run `make sync`
 (then clear the now-dangling `<provider>/skills/<name>` symlinks).
 
-This `README.md` is not a skill (no `SKILL.md`), so `sync.sh` skips it.
+This `README.md` is not a skill (no `SKILL.md`), so `scripts/sync.sh` skips it.

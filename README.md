@@ -7,23 +7,31 @@ Personal dotfiles for macOS. Includes shell configuration, git settings, and dev
 See [docs/installation-flow.md](docs/installation-flow.md) for a diagram of how
 the install scripts and `make` targets fit together.
 
-## What's Included
+## Layout
 
-| Config | Description |
-|--------|-------------|
-| `zshrc` | Zsh configuration with Oh My Zsh, aliases, and ordered PATH setup |
-| `gitconfig` | Git settings with SSH signing, aliases, and the `hunk` pager |
-| `gitignore` | Global gitignore patterns |
-| `psqlrc` | PostgreSQL CLI configuration |
-| `ssh-config` | SSH client configuration |
-| `hunk.config.toml` | Config for the `hunk` git diff pager |
-| `config/ghostty` | Ghostty terminal configuration |
-| `mise.toml` | Version manager for Go, Node, Python |
+| Path | Description |
+|------|-------------|
+| `config/` | The actual dotfiles, grouped by tool — each is symlinked into place by `scripts/sync.sh` |
+| `scripts/` | Install + maintenance scripts (`bootstrap.sh`, `sync.sh`, `setup.sh`, `macos.sh`) |
+| `packages/` | Homebrew manifests (`Brewfile`, `unbrew.txt`) |
 | `ai/` | AI tooling — global agent instructions, skills, Conductor config (see below) |
+| `docs/` | Diagrams and longer-form docs |
 | `AGENTS.md` | Agent instructions specific to this dotfiles repo (stays at root so agents discover it) |
-| `Brewfile` | Homebrew packages and casks |
-| `sync.sh` | Safe symlink installer (backs up real files before linking) |
-| `macos.sh` | macOS system preferences automation |
+
+### Configs (`config/`)
+
+Everything under `config/` is symlinked into `$HOME` by `scripts/sync.sh`:
+
+| Path | Symlinked to | Description |
+|------|--------------|-------------|
+| `config/zsh/zshrc` | `~/.zshrc` | Zsh configuration with Oh My Zsh, aliases, and ordered PATH setup |
+| `config/git/gitconfig` | `~/.gitconfig` | Git settings with SSH signing, aliases, and the `hunk` pager |
+| `config/git/gitignore` | `~/.gitignore` | Global gitignore patterns |
+| `config/psql/psqlrc` | `~/.psqlrc` | PostgreSQL CLI configuration |
+| `config/ssh/config` | `~/.ssh/config` | SSH client configuration |
+| `config/hunk/config.toml` | `~/.config/hunk/config.toml` | Config for the `hunk` git diff pager |
+| `config/ghostty/config` | Ghostty config dir | Ghostty terminal configuration |
+| `config/mise/config.toml` | `~/.config/mise/config.toml` | Version manager for Go, Node, Python (opt-in via `USE_MISE=1`) |
 
 ### AI tooling (`ai/`)
 
@@ -81,29 +89,29 @@ make macos      # Configure macOS system preferences
 make skill      # Scaffold + link a new agent skill (interactive prompts)
 ```
 
-Symlinking is handled entirely by `sync.sh` (invoked via `make sync`). It is
+Symlinking is handled entirely by `scripts/sync.sh` (invoked via `make sync`). It is
 idempotent and safe to re-run: any existing *real* file at a destination is
 moved to `<file>.backup.<timestamp>` before the symlink is created, so a stale
 local config is never silently destroyed.
 
-`mise.toml` is opt-in — it's only linked when `USE_MISE=1` is set, e.g.
-`USE_MISE=1 make sync`.
+`config/mise/config.toml` is opt-in — it's only linked when `USE_MISE=1` is set,
+e.g. `USE_MISE=1 make sync`.
 
 ## Homebrew
 
 Update Brewfile from currently installed packages:
 ```bash
-brew bundle dump --force
+brew bundle dump --force --file=./packages/Brewfile
 ```
 
 Install packages from Brewfile:
 ```bash
-brew bundle --file=./Brewfile
+brew bundle --file=./packages/Brewfile
 ```
 
 Remove packages not in Brewfile:
 ```bash
-brew bundle cleanup --force --file=./Brewfile
+brew bundle cleanup --force --file=./packages/Brewfile
 ```
 
 ## Key Features
