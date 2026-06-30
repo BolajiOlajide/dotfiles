@@ -1,0 +1,13 @@
+# shellcheck does not support zsh; it lints these files as bash and flags
+# zsh-only constructs as errors. This rc is directory-scoped (shellcheck
+# searches a file's directory and its parents), so it silences those false
+# positives for the zsh configs here WITHOUT weakening the checks on the real
+# bash scripts under scripts/.
+#
+#   SC2206 - word-splitting in arrays; zsh doesn't split array-literal expansions
+#   SC1036 - '(' invalid; zsh glob qualifiers / setopt syntax
+#   SC2034 - "unused" vars (SAVEHIST, plugins) that zsh / oh-my-zsh consume
+#   SC2155 - declare-and-assign; harmless for our `export X=$(...)` lines
+#   SC1090 - can't follow a non-constant source path
+#   SC1091 - sourced file not available to the linter
+disable=SC2206,SC1036,SC2034,SC2155,SC1090,SC1091
