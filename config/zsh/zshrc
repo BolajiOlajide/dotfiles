@@ -33,6 +33,11 @@ export GEM_HOME="$HOME/.gem"
 # `typeset -U` (set at the top of this file) dedups; the `(N/)` glob qualifier
 # keeps only directories that actually exist (N = nullglob, / = dirs only), so
 # missing tools don't leave dead PATH entries.
+#
+# SC2206 (quote to avoid word-splitting) is a false positive here: zsh does not
+# word-split unquoted expansions in an array literal, and the `$path` spread on
+# the last line must stay unquoted or it collapses into a single string.
+# shellcheck disable=SC2206
 path=(
     $HOME/bin
     $GOBIN
