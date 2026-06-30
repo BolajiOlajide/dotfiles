@@ -75,6 +75,11 @@ safelink config/ssh/config "$HOME/.ssh/config"
 # per-machine state and intentionally left untracked).
 safelink ai/conductor/settings.toml "$HOME/.conductor/settings.toml"
 
+# Claude Code user settings (theme, TUI mode, attribution). Note: Claude Code
+# writes this file in place (e.g. /config), so edits flow back into the repo via
+# the symlink. Auth/credentials live elsewhere, not here.
+safelink config/claude/settings.json "$HOME/.claude/settings.json"
+
 # mise (opt-in via USE_MISE, matching setup.sh's previous behavior)
 if [[ ${USE_MISE:-} == 1 ]]; then
     safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
