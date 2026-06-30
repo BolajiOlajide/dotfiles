@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  // macOS native window tabs. Zed only *allows* tabbing here; whether new
+  // windows actually merge into tabs is decided by macOS. With the system
+  // "Prefer tabs when opening documents" pref at its default ("In Full Screen
+  // Only"), tabs only appear when Zed is full screen. Set that pref to "Always"
+  // (System Settings > Desktop & Dock) for tabs outside full screen.
   "use_system_window_tabs": true,
   "use_system_path_prompts": true,
   "cli_default_open_behavior": "new_window",
