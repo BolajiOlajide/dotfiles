@@ -2,7 +2,8 @@
 enterprise_data_privacy = true
 
 [git]
-branch_prefix_type = "github_username"
+branch_prefix = "bo"
+delete_branch_on_archive = true
 
 [models]
 default = "opus-4-8-1m"
@@ -38,3 +39,5 @@ incoming/base-branch change unless the local side is clearly the newer intent, \
 and call out anything ambiguous rather than guessing. After resolving, build \
 and run the narrowest relevant tests to confirm nothing broke.
 """
+
+tool_approvals_enabled = true
