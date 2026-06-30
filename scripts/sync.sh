@@ -55,6 +55,11 @@ safelink config/zsh/zshrc     "$HOME/.zshrc"
 safelink config/hunk/config.toml  "$HOME/.config/hunk/config.toml"
 safelink config/zed/settings.json "$HOME/.config/zed/settings.json"
 
+# GitHub CLI. hosts.yml tracks which account/protocol is active; the auth token
+# itself lives in the macOS keychain, not in this file, so it's safe to track.
+safelink config/gh/config.yml "$HOME/.config/gh/config.yml"
+safelink config/gh/hosts.yml  "$HOME/.config/gh/hosts.yml"
+
 # Ghostty: on macOS the app reads ~/Library/Application Support/...ghostty/config
 # and that location overrides the XDG path, so link it there. Elsewhere (Linux)
 # Ghostty uses the XDG path.
