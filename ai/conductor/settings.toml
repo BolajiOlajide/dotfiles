@@ -1,4 +1,5 @@
 "$schema" = "https://conductor.build/schemas/settings.schema.json"
+enterprise_data_privacy = true
 
 [git]
 branch_prefix_type = "github_username"
