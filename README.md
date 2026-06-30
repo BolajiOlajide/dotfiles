@@ -32,6 +32,7 @@ Everything under `config/` is symlinked into `$HOME` by `scripts/sync.sh`:
 | `config/hunk/config.toml` | `~/.config/hunk/config.toml` | Config for the `hunk` git diff pager |
 | `config/ghostty/config` | Ghostty config dir | Ghostty terminal configuration |
 | `config/mise/config.toml` | `~/.config/mise/config.toml` | Version manager for Go, Node, Python (opt-in via `USE_MISE=1`) |
+| `config/zed/settings.json` | `~/.config/zed/settings.json` | Zed editor settings (theme, fonts, keymap base) |
 
 ### AI tooling (`ai/`)
 

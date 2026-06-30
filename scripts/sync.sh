@@ -52,7 +52,8 @@ safelink config/psql/psqlrc   "$HOME/.psqlrc"
 safelink config/zsh/zshrc     "$HOME/.zshrc"
 
 # ~/.config files
-safelink config/hunk/config.toml "$HOME/.config/hunk/config.toml"
+safelink config/hunk/config.toml  "$HOME/.config/hunk/config.toml"
+safelink config/zed/settings.json "$HOME/.config/zed/settings.json"
 
 # Ghostty: on macOS the app reads ~/Library/Application Support/...ghostty/config
 # and that location overrides the XDG path, so link it there. Elsewhere (Linux)
