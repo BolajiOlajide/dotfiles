@@ -16,6 +16,8 @@ brew "go-air"
 brew "mise"
 # Deep clean and optimize your Mac
 brew "mole"
+# Drop-in replacement for Terraform (open-source fork)
+brew "opentofu"
 # Fast, disk space efficient package manager
 brew "pnpm"
 # Object-relational database system
@@ -48,6 +50,8 @@ cask "cleanshot"
 cask "codex"
 # Collaborative team software
 cask "figma"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Free and open-source media player
