@@ -1,0 +1,19 @@
+{
+  "amp.mcpTrustedServers": [
+    {
+      "serverName": "linear",
+      "specHash": "41367e569c6444943f50bbfd5676645aa68c174acc268e18d9b71306130b1356",
+      "allow": true
+    }
+  ],
+  "amp.showCosts": true,
+  "amp.internal.modes": true,
+  "amp.internal.showDetailedCosts": true,
+  "amp.git.commit.ampThread.enabled": false,
+  "amp.git.commit.coauthor.enabled": false,
+  "amp.agent.deepReasoningEffort": "xhigh",
+  "amp.terminal.animation": false,
+  "amp.notifications.enabled": false,
+  "amp.notifications.system.enabled": true,
+  "amp.updates.mode": "warn"
+}

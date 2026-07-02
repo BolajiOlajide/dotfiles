@@ -52,6 +52,7 @@ safelink config/psql/psqlrc   "$HOME/.psqlrc"
 safelink config/zsh/zshrc     "$HOME/.zshrc"
 
 # ~/.config files
+safelink config/amp/settings.json "$HOME/.config/amp/settings.json"
 safelink config/hunk/config.toml  "$HOME/.config/hunk/config.toml"
 safelink config/zed/settings.json "$HOME/.config/zed/settings.json"
 
