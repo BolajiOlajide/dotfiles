@@ -3,6 +3,7 @@
     "commit": "",
     "pr": ""
   },
+  "tui": "fullscreen",
   "theme": "auto",
-  "tui": "fullscreen"
+  "model": "claude-fable-5[1m]"
 }
