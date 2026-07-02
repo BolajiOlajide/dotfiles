@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Inspo: https://github.com/keegancsmith/dotfiles/blob/master/bin/who-listens
+
+# List IPv4 TCP listening sockets, optionally filtered to one port:
+#   port        # everything listening
+#   port 3000   # just port 3000
+exec lsof -n -sTCP:LISTEN -P -i4TCP"${1/#/:}"

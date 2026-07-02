@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# List the commands in this bin directory with their descriptions.
+set -euo pipefail
+
+dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
+for f in "$dir"/*; do
+    [ -f "$f" ] && [ -x "$f" ] || continue
+    desc=$(awk '
+        NR == 1 && /^#!/ { next }
+        !/^#/ { if (NF) exit; next }      # stop at first code line
+        /^#[[:space:]]*$/ { next }        # skip blank comments
+        /:\/\// { next }                  # skip link-only comments (e.g. inspiration URLs)
+        { sub(/^#[[:space:]]*/, ""); sub(/:[[:space:]]*$/, ""); print; exit }
+    ' "$f")
+    printf '%-14s %s\n' "$(basename "$f")" "${desc:-(no description)}"
+done

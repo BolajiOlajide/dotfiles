@@ -30,9 +30,10 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export GEM_HOME="$HOME/.gem"
 
 # One ordered, priority-based PATH. Entries earlier in the array win.
-# `typeset -U` (set at the top of this file) dedups; the `(N/)` glob qualifier
-# keeps only directories that actually exist (N = nullglob, / = dirs only), so
-# missing tools don't leave dead PATH entries.
+# `typeset -U` (set at the top of this file) dedups; the `(N-/)` glob qualifier
+# keeps only directories that actually exist (N = nullglob, / = dirs only,
+# - = follow symlinks, so a symlinked dir like ~/bin counts), so missing tools
+# don't leave dead PATH entries.
 path=(
     $HOME/bin
     $GOBIN
@@ -51,7 +52,7 @@ path=(
     /Applications/GoLand.app/Contents/MacOS
     $path
 )
-path=($^path(N/))
+path=($^path(N-/))
 export PATH
 
 # ===========================================================

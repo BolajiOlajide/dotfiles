@@ -45,6 +45,11 @@ safelink() {
     ln -vs "$src" "$dst"
 }
 
+# Personal scripts: the whole directory is one symlink, so new scripts added to
+# bin/ appear on PATH without re-running sync. zshrc already puts $HOME/bin
+# first on the PATH.
+safelink bin "$HOME/bin"
+
 # Home-directory dotfiles
 safelink config/git/gitconfig "$HOME/.gitconfig"
 safelink config/git/gitignore "$HOME/.gitignore"
