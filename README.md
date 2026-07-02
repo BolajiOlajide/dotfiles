@@ -42,7 +42,7 @@ Everything related to AI coding agents lives under `ai/`:
 |------|-------------|
 | `ai/global.md` | Machine-wide agent instructions, symlinked to Claude Code, Codex, and Amp |
 | `ai/skills/` | Shared agent skills, symlinked into Claude/Codex/Amp (see [ai/skills/README.md](ai/skills/README.md)) |
-| `ai/conductor/settings.toml` | Conductor global settings (shared across machines) |
+| `config/conductor/settings.toml` | Conductor global settings (shared across machines) |
 | `ai/new-skill.sh` | Skill scaffolder (`make skill`) |
 
 The repo-local `AGENTS.md` stays at the root so agents working *in this repo*

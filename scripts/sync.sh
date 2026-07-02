@@ -74,7 +74,7 @@ safelink config/ssh/config "$HOME/.ssh/config"
 
 # Conductor global settings (shared across machines; ~/.conductor/projects is
 # per-machine state and intentionally left untracked).
-safelink ai/conductor/settings.toml "$HOME/.conductor/settings.toml"
+safelink config/conductor/settings.toml "$HOME/.conductor/settings.toml"
 
 # Claude Code user settings (theme, TUI mode, attribution). Note: Claude Code
 # writes this file in place (e.g. /config), so edits flow back into the repo via
