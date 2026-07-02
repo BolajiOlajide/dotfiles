@@ -4,6 +4,17 @@
     "pr": ""
   },
   "model": "sonnet",
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
   "tui": "fullscreen",
-  "theme": "auto"
+  "theme": "auto",
+  "enabledPlugins": {
+    "codex@openai-codex": true
+  }
 }

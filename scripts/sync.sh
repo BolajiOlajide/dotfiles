@@ -86,6 +86,10 @@ safelink config/conductor/settings.toml "$HOME/.conductor/settings.toml"
 # the symlink. Auth/credentials live elsewhere, not here.
 safelink config/claude/settings.json "$HOME/.claude/settings.json"
 
+# Claude Code subagents: the whole directory is one symlink, so new agent
+# definitions appear without re-running sync.
+safelink config/claude/agents "$HOME/.claude/agents"
+
 # mise (opt-in via USE_MISE, matching setup.sh's previous behavior)
 if [[ ${USE_MISE:-} == 1 ]]; then
     safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
