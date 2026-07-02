@@ -15,5 +15,6 @@
   "amp.terminal.animation": false,
   "amp.notifications.enabled": false,
   "amp.notifications.system.enabled": true,
-  "amp.updates.mode": "warn"
+  "amp.updates.mode": "warn",
+  "amp.experimental.cli.nativeSecretsStorage.enabled": true
 }
