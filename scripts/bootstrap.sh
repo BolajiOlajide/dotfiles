@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 log() {
     echo "🚨🚨🚨🚨 ---> $1"
 }
@@ -17,10 +19,13 @@ else
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    # add homebrew to PATH
-    (echo; echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"") >> ~/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    
+    # add homebrew to PATH (prefix differs on Apple Silicon vs Intel)
+    BREW_BIN=/opt/homebrew/bin/brew
+    [ -x "$BREW_BIN" ] || BREW_BIN=/usr/local/bin/brew
+    (echo; echo "eval \"\$(${BREW_BIN} shellenv)\"") >> ~/.zprofile
+    eval "$("$BREW_BIN" shellenv)"
+
+
     # Check if installation was successful
     if command_exists brew; then
         log "Homebrew installed successfully."

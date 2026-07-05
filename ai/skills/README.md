@@ -39,6 +39,6 @@ To do it by hand instead: create `ai/skills/<name>/SKILL.md` with `name` +
 `description` frontmatter and run `make sync`.
 
 To remove a skill, delete its `ai/skills/<name>/` directory and re-run `make sync`
-(then clear the now-dangling `<provider>/skills/<name>` symlinks).
+— sync prunes the now-dangling `<provider>/skills/<name>` symlinks automatically.
 
 This `README.md` is not a skill (no `SKILL.md`), so `scripts/sync.sh` skips it.

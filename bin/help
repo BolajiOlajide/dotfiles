@@ -6,7 +6,8 @@ set -euo pipefail
 dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 
 for f in "$dir"/*; do
-    [ -f "$f" ] && [ -x "$f" ] || continue
+    [ -f "$f" ] || continue
+    [ -x "$f" ] || continue
     desc=$(awk '
         NR == 1 && /^#!/ { next }
         !/^#/ { if (NF) exit; next }      # stop at first code line

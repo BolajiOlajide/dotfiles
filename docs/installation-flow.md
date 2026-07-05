@@ -5,39 +5,44 @@ ready environment. See the [README](../README.md) for usage.
 
 ```mermaid
 flowchart TD
-    A[git clone dotfiles] --> B[./scripts/bootstrap.sh]
+    A[git clone dotfiles] --> J[make all]
 
-    subgraph bootstrap["scripts/bootstrap.sh"]
-        B --> C{Homebrew?}
-        C -->|No| D[Install Homebrew]
-        C -->|Yes| E{1Password CLI?}
-        D --> E
-        E -->|No| F[Install 1Password CLI]
-        E -->|Yes| G{Oh My Zsh?}
-        F --> G
-        G -->|No| H[Install Oh My Zsh]
-        G -->|Yes| I[Bootstrap done]
-        H --> I
-    end
+    subgraph makefile["make all — bootstrap, sync, setup in order"]
+        J --> B[make bootstrap]
 
-    I --> J[make all]
+        subgraph bootstrap["scripts/bootstrap.sh"]
+            B --> C{Homebrew?}
+            C -->|No| D[Install Homebrew]
+            C -->|Yes| E{1Password CLI?}
+            D --> E
+            E -->|No| F[Install 1Password CLI]
+            E -->|Yes| G{Oh My Zsh?}
+            F --> G
+            G -->|No| H[Install Oh My Zsh]
+            G -->|Yes| I[Bootstrap done]
+            H --> I
+        end
 
-    subgraph makefile["make all"]
-        J --> SY[make sync]
-        J --> N[make setup]
+        I --> SY[make sync]
 
         subgraph sync["scripts/sync.sh — safelink (backs up real files)"]
+            SY --> BN[~/bin]
             SY --> K1[~/.gitconfig, ~/.gitignore]
             SY --> L1[~/.psqlrc]
             SY --> M1[~/.zshrc]
-            SY --> H1[~/.config/hunk/config.toml]
+            SY --> H1[~/.config/hunk/config.toml, ~/.config/zed/settings.json]
+            SY --> GH[~/.config/gh/config.yml, hosts.yml]
             SY --> G1[ghostty config — App Support on macOS / XDG on Linux]
             SY --> SC[~/.ssh/config]
             SY --> CD[~/.conductor/settings.toml]
-            SY --> MI[~/.config/mise/config.toml *USE_MISE*]
+            SY --> CL[~/.claude/settings.json, ~/.claude/agents]
+            SY --> AM[~/.config/amp/settings.json]
+            SY --> MI[~/.config/mise/config.toml]
             SY --> AG[ai/global.md → Claude / Codex / Amp]
             SY --> SK[ai/skills/* → Claude / Codex / Amp]
         end
+
+        SY --> N[make setup]
 
         subgraph setup["scripts/setup.sh"]
             N --> O[Generate SSH Keys]
@@ -48,8 +53,7 @@ flowchart TD
         end
     end
 
-    SY --> T[Done]
-    P --> T
+    P --> T[Done]
     T --> U[op signin]
     U --> V[Ready!]
 

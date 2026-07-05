@@ -45,6 +45,21 @@ safelink() {
     ln -vs "$src" "$dst"
 }
 
+# prune_dangling DIR
+#   Remove symlinks directly under DIR that point into $REPO but whose target no
+#   longer exists (i.e. the source was deleted from the repo). Only touches links
+#   into $REPO, so unrelated broken symlinks the user owns are left alone.
+prune_dangling() {
+    local dir="$1" link target
+    [ -d "$dir" ] || return 0
+    while IFS= read -r -d '' link; do
+        target=$(readlink "$link")
+        case "$target" in
+            "$REPO"/*) [ -e "$link" ] || { rm "$link"; echo "Pruned dangling link $link -> $target"; } ;;
+        esac
+    done < <(find "$dir" -maxdepth 1 -type l -print0)
+}
+
 # Personal scripts: the whole directory is one symlink, so new scripts added to
 # bin/ appear on PATH without re-running sync. zshrc already puts $HOME/bin
 # first on the PATH.
@@ -90,10 +105,8 @@ safelink config/claude/settings.json "$HOME/.claude/settings.json"
 # definitions appear without re-running sync.
 safelink config/claude/agents "$HOME/.claude/agents"
 
-# mise (opt-in via USE_MISE, matching setup.sh's previous behavior)
-if [[ ${USE_MISE:-} == 1 ]]; then
-    safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
-fi
+# mise (version manager)
+safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
 
 # Shared *global* agent instructions: one source of truth, applied to every repo
 # on this machine. (The repo-local AGENTS.md is dotfiles-specific and is NOT
@@ -113,3 +126,9 @@ for skill in ai/skills/*/; do
     safelink "ai/skills/$name" "$HOME/.codex/skills/$name"         # Codex
     safelink "ai/skills/$name" "$HOME/.config/agents/skills/$name" # Amp
 done
+
+# Self-heal: drop links whose repo source was removed since the last sync.
+prune_dangling "$HOME/.claude/skills"
+prune_dangling "$HOME/.codex/skills"
+prune_dangling "$HOME/.config/agents/skills"
+prune_dangling "$HOME/.claude/agents"

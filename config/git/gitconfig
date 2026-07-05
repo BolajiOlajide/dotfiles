@@ -81,7 +81,6 @@
 [alias]
 	staash = stash --all
 	blaame = blame -w -C -C -C
-	push = push --force-with-lease
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
