@@ -1,3 +1,6 @@
+# Shared packages installed on every machine, regardless of profile.
+# Profile-specific extras live in Brewfile.personal / Brewfile.work; setup.sh
+# applies this file first, then the one matching ~/.config/dotfiles/profile.
 tap "ampcode/tap"
 tap "modem-dev/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -10,18 +13,14 @@ brew "ffmpeg"
 brew "gh"
 # Manage stacked Git branches
 brew "git-spice"
-# Live reload for Go apps
-brew "go-air"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
 # Deep clean and optimize your Mac
 brew "mole"
-# Drop-in replacement for Terraform (open-source fork)
-brew "opentofu"
-# Fast, disk space efficient package manager
-brew "pnpm"
 # Object-relational database system
 brew "postgresql@17", restart_service: :changed, link: true
+# Fast, disk space efficient package manager
+brew "pnpm"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: :changed
 # Static analysis and lint tool, for (ba)sh scripts
@@ -34,14 +33,6 @@ brew "ampcode/tap/ampcode", trusted: true
 brew "modem-dev/tap/hunk", trusted: true
 # Command-line interface for 1Password
 cask "1password-cli"
-# Image editing and design software
-cask "affinity"
-# Tools for building Android applications
-cask "android-studio"
-# Records audio from any application
-cask "audio-hijack"
-# File manager
-cask "bloom"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Screen capturing tool
@@ -54,10 +45,6 @@ cask "figma"
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Free and open-source media player
-cask "iina"
-# Cable-free audio router
-cask "loopback"
 # VPN client for secure internet access and private browsing
 cask "nordvpn"
 # App to write, plan, collaborate, and get organised
@@ -66,28 +53,14 @@ cask "notion"
 cask "notion-calendar"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# All system and utility switches in one place
-cask "one-switch"
-# Replacement for Docker Desktop
-cask "orbstack"
-# HTTP debugging proxy
-cask "proxyman"
 # Team communication and collaboration software
 cask "slack"
-# Browse and preview sounds from Splice’s entire catalog
-cask "splice"
 # Music streaming service
 cask "spotify"
-# Open-source media center
-cask "stremio"
-# Dictation tool including LLM reformatting
-cask "superwhisper"
 # Native GUI tool for relational databases
 cask "tableplus"
 # Unpacks archive files
 cask "the-unarchiver"
-# Multimedia player
-cask "vlc"
 # Multiplayer code editor
 cask "zed"
 # Video communication and virtual meeting platform

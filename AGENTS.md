@@ -24,6 +24,14 @@ to them. So:
 - Add new configs by dropping the file under `config/<tool>/` and adding a
   `safelink SRC DST` line to `scripts/sync.sh`, not by hand-linking.
 
+## Machine profiles
+
+Each machine is `personal` or `work`, recorded once by `scripts/bootstrap.sh`
+in `~/.config/dotfiles/profile` (also exported as `$DOTFILES_PROFILE` by
+zshrc). Shared packages go in `packages/Brewfile`; profile-only packages go in
+`packages/Brewfile.personal` or `packages/Brewfile.work` — when adding a
+package, pick the right file rather than defaulting to the shared one.
+
 ## Installing software
 
 Never install a tool without my explicit approval — name the tool and the exact install command (e.g. `brew install shellcheck`) and wait for me to approve. This governs ad-hoc installs an agent initiates; it does not restrict this repo's own documented install flow (`make all`, `brew bundle`) when I run it.

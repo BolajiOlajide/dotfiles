@@ -11,6 +11,47 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Machine profile ("personal" or "work") decides which optional package set
+# setup.sh installs on top of the shared Brewfile. The answer lives outside the
+# repo so each machine states it exactly once; an explicit PROFILE env var
+# (e.g. `make all PROFILE=work`) wins over the stored value and updates it.
+PROFILE_FILE="$HOME/.config/dotfiles/profile"
+PROFILE="${PROFILE:-}"
+
+if [ -z "$PROFILE" ] && [ -f "$PROFILE_FILE" ]; then
+    PROFILE=$(cat "$PROFILE_FILE")
+fi
+
+case "$PROFILE" in
+    work|personal) ;;
+    "")
+        if [ -t 0 ]; then
+            read -rp "Is this a [w]ork or [p]ersonal machine? " answer
+            case "$answer" in
+                w|work) PROFILE=work ;;
+                p|personal) PROFILE=personal ;;
+                *)
+                    log "Unrecognized answer '$answer' — expected 'work' or 'personal'."
+                    exit 1
+                    ;;
+            esac
+        else
+            # No TTY to ask and nothing stored: refuse to guess rather than
+            # silently install the wrong package set on a work machine.
+            log "No machine profile set. Re-run with PROFILE=work or PROFILE=personal (e.g. 'make all PROFILE=work')."
+            exit 1
+        fi
+        ;;
+    *)
+        log "Invalid profile '$PROFILE' — expected 'work' or 'personal'."
+        exit 1
+        ;;
+esac
+
+mkdir -p "$(dirname "$PROFILE_FILE")"
+printf '%s\n' "$PROFILE" > "$PROFILE_FILE"
+log "Machine profile: $PROFILE ($PROFILE_FILE)"
+
 # Check if Homebrew is installed
 if command_exists brew; then
     log "Homebrew is already installed."

@@ -1,0 +1,33 @@
+# Extras for personal machines only (media, entertainment, personal-project
+# infrastructure). Applied by setup.sh after the shared Brewfile when
+# ~/.config/dotfiles/profile is "personal".
+# Live reload for Go apps
+brew "go-air"
+# Drop-in replacement for Terraform (open-source fork)
+brew "opentofu"
+# Image editing and design software
+cask "affinity"
+# Tools for building Android applications
+cask "android-studio"
+# Records audio from any application
+cask "audio-hijack"
+# File manager
+cask "bloom"
+# Free and open-source media player
+cask "iina"
+# Cable-free audio router
+cask "loopback"
+# All system and utility switches in one place
+cask "one-switch"
+# Replacement for Docker Desktop
+cask "orbstack"
+# HTTP debugging proxy
+cask "proxyman"
+# Browse and preview sounds from Splice's entire catalog
+cask "splice"
+# Open-source media center
+cask "stremio"
+# Dictation tool including LLM reformatting
+cask "superwhisper"
+# Multimedia player
+cask "vlc"

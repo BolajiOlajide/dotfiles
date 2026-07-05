@@ -16,9 +16,10 @@ sync:
 skill:
 	@./ai/new-skill.sh "$(name)" "$(desc)"
 
-# Define the bootstrap target to run the scripts/bootstrap.sh script
+# Define the bootstrap target to run the scripts/bootstrap.sh script.
+# On a fresh machine pass the profile explicitly: make all PROFILE=work
 bootstrap:
-	@./scripts/bootstrap.sh
+	@PROFILE="$(PROFILE)" ./scripts/bootstrap.sh
 
 setup:
 	@./scripts/setup.sh

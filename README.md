@@ -13,7 +13,7 @@ the install scripts and `make` targets fit together.
 |------|-------------|
 | `config/` | The actual dotfiles, grouped by tool — each is symlinked into place by `scripts/sync.sh` |
 | `scripts/` | Install + maintenance scripts (`bootstrap.sh`, `sync.sh`, `setup.sh`, `macos.sh`) |
-| `packages/` | Homebrew manifests (`Brewfile`, `unbrew.txt`) |
+| `packages/` | Homebrew manifests (`Brewfile` shared, `Brewfile.personal`/`Brewfile.work` per profile, `unbrew.txt`) |
 | `ai/` | AI tooling — global agent instructions, skills, Conductor config (see below) |
 | `docs/` | Diagrams and longer-form docs |
 | `AGENTS.md` | Agent instructions specific to this dotfiles repo (stays at root so agents discover it) |
@@ -68,7 +68,8 @@ auto-discover it.
 
 2. Run the install (`make all` runs bootstrap, sync, and setup in order):
    ```bash
-   make all
+   make all                 # prompts for the machine profile on first run
+   make all PROFILE=work    # or state it explicitly (work | personal)
    ```
 
 3. Sign in to 1Password CLI:
@@ -77,12 +78,32 @@ auto-discover it.
    ```
 
 This will:
+- Record the machine profile in `~/.config/dotfiles/profile` (asked once)
 - Install Homebrew (if not present)
 - Install 1Password CLI (for secrets management)
 - Install Oh My Zsh (if not present)
 - Create symlinks for all config files
 - Generate SSH keys
-- Install packages from Brewfile
+- Install packages from the shared Brewfile, then the profile's Brewfile
+
+## Machine profiles
+
+Each machine declares itself `personal` or `work` exactly once — bootstrap
+prompts (or takes `PROFILE=...`) and stores the answer in
+`~/.config/dotfiles/profile`, outside the repo. Everything else keys off that
+file rather than hostnames or env vars:
+
+- `packages/Brewfile` holds shared tools; `Brewfile.personal` and
+  `Brewfile.work` hold the extras. `setup.sh` applies the shared file, then the
+  one matching the profile (or skips extras if no profile is set yet).
+- `zshrc` exports `$DOTFILES_PROFILE` so shell config and scripts can branch
+  per machine, and sources the untracked `~/.zshrc.local` for machine-only
+  env vars.
+- `gitconfig` includes the untracked `~/.gitconfig.local` last, so a work
+  machine can override `user.email`/`signingKey` without forking the config.
+
+To change a machine's profile, edit `~/.config/dotfiles/profile` (or re-run
+`make bootstrap PROFILE=...`) and run `make setup` again.
 
 ## Makefile Targets
 
@@ -102,19 +123,20 @@ local config is never silently destroyed.
 
 ## Homebrew
 
-Update Brewfile from currently installed packages:
+Packages are split across `packages/Brewfile` (shared), `Brewfile.personal`,
+and `Brewfile.work`. Add new entries to the right file by hand — `brew bundle
+dump` regenerates a single flat file, so it would merge the profiles back
+together (dump to a scratch path if you want to diff against reality).
+
+Install packages for this machine (shared + profile):
 ```bash
-brew bundle dump --force --file=./packages/Brewfile
+make setup
 ```
 
-Install packages from Brewfile:
+Install a single manifest directly:
 ```bash
 brew bundle --file=./packages/Brewfile
-```
-
-Remove packages not in Brewfile:
-```bash
-brew bundle cleanup --force --file=./packages/Brewfile
+brew bundle --file=./packages/Brewfile.personal
 ```
 
 ## Key Features

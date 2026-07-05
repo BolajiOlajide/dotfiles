@@ -61,6 +61,10 @@ export PATH
 
 export DOCKER_BUILDKIT=1
 
+# Machine profile ("personal" or "work"), written once by scripts/bootstrap.sh.
+# Lets shell config and scripts branch per machine; empty if bootstrap hasn't run.
+export DOTFILES_PROFILE="$(command cat "$HOME/.config/dotfiles/profile" 2>/dev/null)"
+
 # JAVA
 if [[ "$OSTYPE" == "darwin"* ]] && command -v /usr/libexec/java_home &> /dev/null; then
   export JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
