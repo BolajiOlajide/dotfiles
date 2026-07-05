@@ -12,17 +12,17 @@ jobs:
   shell:
     name: Shell lint + syntax
     runs-on: ubuntu-latest
-    env:
-      SCRIPTS: scripts/sync.sh scripts/setup.sh scripts/bootstrap.sh ai/new-skill.sh scripts/macos.sh
     steps:
       - uses: actions/checkout@v7
 
+      # Discover scripts by shebang instead of a hand-maintained list, so
+      # bin/ additions (and any future script) are covered automatically.
       # shellcheck is preinstalled on ubuntu runners.
       - name: shellcheck
-        run: shellcheck $SCRIPTS
+        run: shellcheck $(grep -rlE '^#!.*\b(bash|sh)\b' scripts bin ai)
 
       - name: bash -n
-        run: for f in $SCRIPTS; do bash -n "$f"; done
+        run: for f in $(grep -rlE '^#!.*\bbash\b' scripts bin ai); do bash -n "$f"; done
 
       # zsh is not preinstalled on the runner; install it there (not on a
       # developer machine) only to syntax-check zshrc.
@@ -51,6 +51,13 @@ jobs:
                   print("FAIL:", f, "->", e); bad = True
           sys.exit(1 if bad else 0)
           PY
+
+      # zed/settings.json is JSONC (comments allowed), so it's excluded here.
+      - name: JSON parses
+        run: |
+          for f in config/amp/settings.json config/claude/settings.json; do
+            python3 -c "import json,sys; json.load(open(sys.argv[1])); print('ok:', sys.argv[1])" "$f"
+          done
 
       - name: SKILL.md frontmatter
         run: |

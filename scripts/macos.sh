@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # macOS System Preferences Configuration
 # Run this script to configure macOS settings for a development environment
 # Some changes require a logout/restart to take effect
@@ -273,7 +275,7 @@ for app in "Activity Monitor" \
     "Safari" \
     "SystemUIServer" \
     "Terminal"; do
-    killall "${app}" &> /dev/null
+    killall "${app}" &> /dev/null || true
 done
 
 echo ""
