@@ -90,10 +90,8 @@ safelink config/claude/settings.json "$HOME/.claude/settings.json"
 # definitions appear without re-running sync.
 safelink config/claude/agents "$HOME/.claude/agents"
 
-# mise (opt-in via USE_MISE, matching setup.sh's previous behavior)
-if [[ ${USE_MISE:-} == 1 ]]; then
-    safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
-fi
+# mise (version manager)
+safelink config/mise/config.toml "$HOME/.config/mise/config.toml"
 
 # Shared *global* agent instructions: one source of truth, applied to every repo
 # on this machine. (The repo-local AGENTS.md is dotfiles-specific and is NOT

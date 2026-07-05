@@ -31,8 +31,13 @@ Everything under `config/` is symlinked into `$HOME` by `scripts/sync.sh`:
 | `config/ssh/config` | `~/.ssh/config` | SSH client configuration |
 | `config/hunk/config.toml` | `~/.config/hunk/config.toml` | Config for the `hunk` git diff pager |
 | `config/ghostty/config` | Ghostty config dir | Ghostty terminal configuration |
-| `config/mise/config.toml` | `~/.config/mise/config.toml` | Version manager for Go, Node, Python (opt-in via `USE_MISE=1`) |
+| `config/mise/config.toml` | `~/.config/mise/config.toml` | Version manager for Go, Node, Python |
 | `config/zed/settings.json` | `~/.config/zed/settings.json` | Zed editor settings (theme, fonts, keymap base) |
+| `bin/` | `~/bin` | Personal scripts (whole dir symlinked; on PATH) |
+| `config/gh/config.yml`, `config/gh/hosts.yml` | `~/.config/gh/` | GitHub CLI account/protocol state |
+| `config/claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings |
+| `config/claude/agents/` | `~/.claude/agents` | Claude Code subagents (whole dir symlinked) |
+| `config/amp/settings.json` | `~/.config/amp/settings.json` | Amp settings |
 
 ### AI tooling (`ai/`)
 
@@ -94,9 +99,6 @@ Symlinking is handled entirely by `scripts/sync.sh` (invoked via `make sync`). I
 idempotent and safe to re-run: any existing *real* file at a destination is
 moved to `<file>.backup.<timestamp>` before the symlink is created, so a stale
 local config is never silently destroyed.
-
-`config/mise/config.toml` is opt-in — it's only linked when `USE_MISE=1` is set,
-e.g. `USE_MISE=1 make sync`.
 
 ## Homebrew
 

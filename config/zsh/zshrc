@@ -59,7 +59,6 @@ export PATH
 # =              EXPORTS                                    =
 # ===========================================================
 
-export USE_MISE=1
 export DOCKER_BUILDKIT=1
 
 # JAVA
@@ -158,9 +157,7 @@ dex() {
 # ===========================================================
 
 # mise (version manager)
-if [[ -n "$USE_MISE" && "$USE_MISE" -eq 1 ]]; then
-  command -v mise &>/dev/null && eval "$(mise activate zsh)"
-fi
+command -v mise &>/dev/null && eval "$(mise activate zsh)"
 
 # direnv
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
@@ -179,3 +176,6 @@ fi
 #export CLOUDSDK_PYTHON=$(which python3)
 
 export RAILWAY_NO_TELEMETRY=1
+
+# Machine-local overrides (untracked; never committed).
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

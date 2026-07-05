@@ -2,8 +2,6 @@
 # If catppuccin-mocha isn't found, run: ghostty +list-themes
 # and pick one that exists. Safe built-in fallbacks shown below.
 theme = dark:"Vesper",light:"Catppuccin Latte"
-background-opacity = 0.92
-background-blur = 24
 # background-image = ~/Pictures/term/dark-nebula.png
 # background-image-opacity = 0.12
 # background-image-fit = cover
