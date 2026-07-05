@@ -81,3 +81,9 @@ jobs:
       - uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # hosts.yml is symlinked into the repo; gh writes oauth_token into it
+      # whenever keyring storage is unavailable. Catch that pre-merge —
+      # gitleaks above only flags it once it's already in pushed history.
+      - name: no gh token in hosts.yml
+        run: "! grep -q 'oauth_token' config/gh/hosts.yml"
