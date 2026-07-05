@@ -17,11 +17,13 @@ SSH_EMAIL="25608335+BolajiOlajide@users.noreply.github.com"
 
 ssh_keys_name=(git id_ed25519)
 
-# create a loop and create an ssh key with the path `$HOME/.ssh/{name}`
+# Keys are deliberately generated without a passphrase (accepted tradeoff for
+# frictionless automation). The UseKeychain lines in config/ssh/config only
+# take effect if a passphrase-protected key is ever added.
 for name in "${ssh_keys_name[@]}"; do
     key_path="$HOME/.ssh/$name"
     if [ ! -f "$key_path" ]; then
-        ssh-keygen -t ed25519 -f "$key_path" -N "" -C "$SSH_EMAIL" <<< y >/dev/null 2>&1
+        ssh-keygen -t ed25519 -f "$key_path" -N "" -C "$SSH_EMAIL" >/dev/null 2>&1
         echo "SSH key '$name' generated at $key_path"
     else
         echo "SSH key '$name' already exists at $key_path"
@@ -33,7 +35,7 @@ done
 # Generate RSA key only if it doesn't already exist
 RSA_KEY_PATH="$HOME/.ssh/git_rsa"
 if [ ! -f "$RSA_KEY_PATH" ]; then
-    ssh-keygen -t rsa -b 4096 -f "$RSA_KEY_PATH" -N "" -C "$SSH_EMAIL" <<< y >/dev/null 2>&1
+    ssh-keygen -t rsa -b 4096 -f "$RSA_KEY_PATH" -N "" -C "$SSH_EMAIL" >/dev/null 2>&1
     echo "RSA SSH key generated at $RSA_KEY_PATH"
 else
     echo "RSA SSH key already exists at $RSA_KEY_PATH"
@@ -41,8 +43,6 @@ fi
 
 # setup brew
 brew bundle --file="$REPO/packages/Brewfile"
-
-eval "$(ssh-agent -s)"
 
 # Note: symlinking of config files (ssh config, mise, etc.) is handled by
 # sync.sh / `make sync`.
