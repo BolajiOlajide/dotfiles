@@ -32,6 +32,12 @@ jobs:
           sudo apt-get install -y zsh
           zsh -n config/zsh/zshrc
 
+      # Actually run sync against a throwaway HOME: catches safelink
+      # regressions and missing source files, and exercises the non-macOS
+      # (XDG) ghostty branch.
+      - name: sync.sh smoke run
+        run: HOME="$(mktemp -d)" ./scripts/sync.sh
+
   config:
     name: Config + skill validation
     runs-on: ubuntu-latest
