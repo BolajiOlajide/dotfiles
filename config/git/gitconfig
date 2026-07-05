@@ -86,3 +86,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+# Machine-local overrides (untracked). Last include wins, so a work machine can
+# override user.email/signingKey etc. in ~/.gitconfig.local without forking
+# this file. Missing file is silently ignored by git.
+[include]
+	path = ~/.gitconfig.local

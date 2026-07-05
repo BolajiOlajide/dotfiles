@@ -11,7 +11,12 @@ flowchart TD
         J --> B[make bootstrap]
 
         subgraph bootstrap["scripts/bootstrap.sh"]
-            B --> C{Homebrew?}
+            B --> PR{Machine profile?}
+            PR -->|Stored / PROFILE env| C
+            PR -->|Neither| PR2[Prompt work or personal]
+            PR2 --> PR3[Save to ~/.config/dotfiles/profile]
+            PR3 --> C
+            C{Homebrew?}
             C -->|No| D[Install Homebrew]
             C -->|Yes| E{1Password CLI?}
             D --> E
@@ -49,11 +54,12 @@ flowchart TD
             O --> O1[~/.ssh/git]
             O --> O2[~/.ssh/id_ed25519]
             O --> O3[~/.ssh/git_rsa]
-            O --> P[brew bundle]
+            O --> P[brew bundle — shared Brewfile]
+            P --> P1[brew bundle — Brewfile.personal or Brewfile.work per profile]
         end
     end
 
-    P --> T[Done]
+    P1 --> T[Done]
     T --> U[op signin]
     U --> V[Ready!]
 

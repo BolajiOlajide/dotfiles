@@ -41,8 +41,19 @@ else
     echo "RSA SSH key already exists at $RSA_KEY_PATH"
 fi
 
-# setup brew
+# setup brew: shared packages first, then the extras for this machine's
+# profile (written by bootstrap.sh). No profile file -> shared only, so a bare
+# `make setup` never guesses and installs the wrong extras.
 brew bundle --file="$REPO/packages/Brewfile"
+
+DOTFILES_PROFILE=$(cat "$HOME/.config/dotfiles/profile" 2>/dev/null || true)
+if [ -z "$DOTFILES_PROFILE" ]; then
+    echo "No machine profile set (run 'make bootstrap'); skipping profile-specific packages."
+elif [ -f "$REPO/packages/Brewfile.$DOTFILES_PROFILE" ]; then
+    brew bundle --file="$REPO/packages/Brewfile.$DOTFILES_PROFILE"
+else
+    echo "No packages/Brewfile.$DOTFILES_PROFILE for profile '$DOTFILES_PROFILE'; skipping."
+fi
 
 # Note: symlinking of config files (ssh config, mise, etc.) is handled by
 # sync.sh / `make sync`.

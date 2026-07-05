@@ -1,0 +1,3 @@
+# Extras for work machines only. Applied by setup.sh after the shared Brewfile
+# when ~/.config/dotfiles/profile is "work". Intentionally empty for now — add
+# work-specific tools here as they come up.
