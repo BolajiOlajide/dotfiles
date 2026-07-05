@@ -6,6 +6,13 @@ set -euo pipefail
 # Brewfile work regardless of the caller's working directory.
 REPO=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)
 
+# brew may not be on PATH yet: `make` runs each recipe in its own shell, so the
+# PATH export from `make bootstrap` doesn't carry into this process. Re-source
+# the shellenv line bootstrap wrote to ~/.zprofile instead of hardcoding a prefix.
+if ! command -v brew >/dev/null 2>&1 && [ -f "$HOME/.zprofile" ]; then
+    eval "$(grep -h 'brew shellenv' "$HOME/.zprofile")"
+fi
+
 SSH_EMAIL="25608335+BolajiOlajide@users.noreply.github.com"
 
 ssh_keys_name=(git id_ed25519)
