@@ -178,7 +178,4 @@ fi
 #source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 #export CLOUDSDK_PYTHON=$(which python3)
 
-# bun completions
-[ -s "/Users/bolajiolajide/.bun/_bun" ] && source "/Users/bolajiolajide/.bun/_bun"
-
 export RAILWAY_NO_TELEMETRY=1

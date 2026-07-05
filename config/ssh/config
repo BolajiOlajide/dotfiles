@@ -1,5 +1,3 @@
-Include /Users/bolaji/.ssh/conductor_config
-
 # OrbStack: 'orb' SSH host for Linux machines.
 # Must come before any Host blocks. Silently ignored if OrbStack isn't installed.
 Include ~/.orbstack/ssh/config
