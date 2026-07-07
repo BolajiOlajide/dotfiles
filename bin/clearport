@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Kill whatever is listening on a TCP port. Companion to `port`, which lists:
+#   clearport 3000
+
+set -euo pipefail
+
+if [ -z "${1:-}" ]; then
+    echo "Usage: clearport <port>" >&2
+    exit 1
+fi
+port=$1
+
+# Match listeners only (like `port` does), not clients that merely have a
+# connection touching the port. lsof exits non-zero on no match; that's the
+# clean "nothing to kill" outcome here, not an error.
+pids=$(lsof -ti tcp:"$port" -sTCP:LISTEN || true)
+if [ -z "$pids" ]; then
+    echo "No process found on port $port"
+    exit 0
+fi
+
+echo "Killing process(es) on port $port: $pids"
+failed=0
+while IFS= read -r pid; do
+    if ! kill -9 "$pid"; then
+        failed=1
+    fi
+done <<EOF
+$pids
+EOF
+
+if [ "$failed" -eq 0 ]; then
+    echo "✓ Port $port cleared"
+else
+    echo "✗ Failed to kill process on port $port" >&2
+    exit 1
+fi
