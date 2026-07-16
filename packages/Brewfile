@@ -27,6 +27,8 @@ brew "redis", restart_service: :changed
 brew "shellcheck"
 # Generate type safe Go from SQL
 brew "sqlc"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # CLI for Amp, the frontier coding agent
 brew "ampcode/tap/ampcode", trusted: true
 # Desktop-inspired terminal diff viewer for agent-authored changesets

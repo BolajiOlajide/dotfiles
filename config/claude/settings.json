@@ -3,7 +3,10 @@
     "commit": "",
     "pr": ""
   },
-  "model": "sonnet",
+  "model": "opus[1m]",
+  "enabledPlugins": {
+    "codex@openai-codex": true
+  },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
@@ -13,8 +16,5 @@
     }
   },
   "tui": "fullscreen",
-  "theme": "auto",
-  "enabledPlugins": {
-    "codex@openai-codex": true
-  }
+  "theme": "auto"
 }
