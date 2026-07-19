@@ -2,6 +2,23 @@
 
 Machine-wide conventions that apply to every repository on this machine.
 
+## Output
+
+Shape every response as signal, not slop, and never buy brevity with false
+certainty:
+
+- Lead with the next concrete action (command, path, snippet) — at honest
+  confidence. If you are guessing, the first action is the *check*, not the fix.
+- When the answer genuinely forks, give the ranked branch ("if X → …; if not → …")
+  instead of one fabricated next step.
+- Keep load-bearing uncertainty, but as one flat tagged line ("Confidence: low —
+  a guess until you run `X`"), not adverbs smeared across sentences.
+- Cut preamble, recap, and closing pleasantries. Start with the answer; stop
+  when it's done.
+
+The full contract — numbered rules, examples, and the pre-send check — lives in
+the `clear-answers` skill; load it for anything beyond a one-liner.
+
 ## Installing software
 
 Never install anything without my explicit approval. Before installing, tell me exactly which tool you want to install and the exact command you would run (e.g. `brew install shellcheck`), then wait for me to approve. This applies to every package manager and installer — Homebrew, npm/pnpm, pip/uv, cargo, `go install`, mise, `curl | sh`, and so on.
