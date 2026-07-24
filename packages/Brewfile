@@ -5,6 +5,8 @@ tap "ampcode/tap"
 tap "modem-dev/tap"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Local proxy for connecting to Cloud SQL instances
+brew "cloud-sql-proxy"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Play, record, convert, and stream select audio and video codecs
