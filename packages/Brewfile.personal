@@ -5,6 +5,8 @@
 brew "go-air"
 # Drop-in replacement for Terraform (open-source fork)
 brew "opentofu"
+# Deploy and manage apps on Railway
+brew "railway"
 # Image editing and design software
 cask "affinity"
 # Tools for building Android applications
