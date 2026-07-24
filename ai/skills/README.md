@@ -42,3 +42,13 @@ To remove a skill, delete its `ai/skills/<name>/` directory and re-run `make syn
 — sync prunes the now-dangling `<provider>/skills/<name>` symlinks automatically.
 
 This `README.md` is not a skill (no `SKILL.md`), so `scripts/sync.sh` skips it.
+
+## Vendored skills
+
+The `remotion-*` and `mediabunny` skills are a vendored mirror of
+[`remotion-dev/remotion`](https://github.com/remotion-dev/remotion/tree/main/packages/skills/skills)
+(`packages/skills/skills`), copied as-is — including the relative cross-link
+symlinks inside `remotion-best-practices/`, which resolve because every skill is
+linked as a sibling in each provider's skills dir. `remotion-best-practices` is
+the router; start there. To refresh, re-copy that upstream directory over these,
+or run the `remotion-upgrade` skill.
