@@ -25,6 +25,8 @@ brew "postgresql@17", restart_service: :changed, link: true
 brew "pnpm"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: :changed
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Generate type safe Go from SQL
