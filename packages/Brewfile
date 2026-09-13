@@ -33,6 +33,8 @@ brew "shellcheck"
 brew "sqlc"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Tool for creating isolated virtual python environments
+brew "virtualenv"
 # CLI for Amp, the frontier coding agent
 brew "ampcode/tap/ampcode", trusted: true
 # Desktop-inspired terminal diff viewer for agent-authored changesets
