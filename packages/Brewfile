@@ -7,6 +7,8 @@ tap "modem-dev/tap"
 brew "bat"
 # Local proxy for connecting to Cloud SQL instances
 brew "cloud-sql-proxy"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Play, record, convert, and stream select audio and video codecs
