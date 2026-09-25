@@ -29,6 +29,16 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PNPM_HOME="$HOME/Library/pnpm"
 export GEM_HOME="$HOME/.gem"
 
+# JAVA: prefer the JDK bundled with Android Studio (no standalone JDK is
+# installed, so `java_home` finds nothing); fall back to a registered JDK 17.
+_as_jbr="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+if [[ -d "$_as_jbr" ]]; then
+  export JAVA_HOME="$_as_jbr"
+elif [[ "$OSTYPE" == "darwin"* ]] && [[ -x /usr/libexec/java_home ]]; then
+  export JAVA_HOME="$(/usr/libexec/java_home -v 17 2>/dev/null)"
+fi
+unset _as_jbr
+
 # One ordered, priority-based PATH. Entries earlier in the array win.
 # `typeset -U` (set at the top of this file) dedups; the `(N-/)` glob qualifier
 # keeps only directories that actually exist (N = nullglob, / = dirs only,
@@ -44,6 +54,7 @@ path=(
     $GEM_HOME/bin
     $PNPM_HOME
     $HOMEBREW_PREFIX/opt/ruby/bin
+    ${JAVA_HOME:+$JAVA_HOME/bin}
     $HOMEBREW_PREFIX/opt/openjdk@17/bin
     $HOMEBREW_PREFIX/opt/postgresql@16/bin
     $HOMEBREW_PREFIX/opt/libpq/bin
@@ -64,11 +75,6 @@ export DOCKER_BUILDKIT=1
 # Machine profile ("personal" or "work"), written once by scripts/bootstrap.sh.
 # Lets shell config and scripts branch per machine; empty if bootstrap hasn't run.
 export DOTFILES_PROFILE="$(command cat "$HOME/.config/dotfiles/profile" 2>/dev/null)"
-
-# JAVA
-if [[ "$OSTYPE" == "darwin"* ]] && command -v /usr/libexec/java_home &> /dev/null; then
-  export JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null)
-fi
 
 # Python - require virtualenv for pip
 # https://daniel.feldroy.com/posts/til-2023-12-forcing-pip-to-use-virtualenv
