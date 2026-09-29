@@ -162,6 +162,11 @@ dex() {
   docker exec -it "$1" sh
 }
 
+# Sort the music pantry
+pantry() {
+  python3 "$HOME/Music/THE PANTRY/pantry_sorter.py" "$@"
+}
+
 # ===========================================================
 # =              TOOL INITIALIZATION                        =
 # ===========================================================
