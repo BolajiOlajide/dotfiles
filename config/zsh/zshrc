@@ -167,6 +167,41 @@ pantry() {
   python3 "$HOME/Music/THE PANTRY/pantry_sorter.py" "$@"
 }
 
+# Compress a video in place with ffmpeg (H.264 CRF 23 + AAC, ffmpeg's defaults).
+# Only replaces the original if the encode succeeds and comes out smaller.
+vcompress() {
+  if [ $# -eq 0 ]; then
+    echo "usage: vcompress <video> [video...]" >&2
+    return 1
+  fi
+  local src tmp before after rc=0
+  for src in "$@"; do
+    if [ ! -f "$src" ]; then
+      echo -e "\033[31mError: $src is not a file.\033[0m" >&2
+      rc=1; continue
+    fi
+    # Same directory and extension so the final mv is an atomic rename.
+    tmp="${src:h}/.${src:t:r}.vcompress.$$.${src:e}"
+    if ! ffmpeg -hide_banner -loglevel warning -stats -i "$src" \
+        -c:v libx264 -crf 23 -preset medium -pix_fmt yuv420p \
+        -c:a aac -b:a 128k -movflags +faststart "$tmp"; then
+      command rm -f "$tmp"
+      echo -e "\033[31mError: ffmpeg failed on $src; original untouched.\033[0m" >&2
+      rc=1; continue
+    fi
+    before=$(stat -f %z "$src"); after=$(stat -f %z "$tmp")
+    if (( after >= before )); then
+      command rm -f "$tmp"
+      echo "$src: compressed file wasn't smaller; kept original."
+      continue
+    fi
+    touch -r "$src" "$tmp"
+    command mv -f "$tmp" "$src"
+    printf "%s: %.1fMB -> %.1fMB\n" "$src" $(( before / 1048576.0 )) $(( after / 1048576.0 ))
+  done
+  return $rc
+}
+
 # ===========================================================
 # =              TOOL INITIALIZATION                        =
 # ===========================================================
